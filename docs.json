@@ -1,9 +1,19 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "willow",
-  "name": "boundless",
+  "name": "Boundless",
   "colors": {
     "primary": "#16A34A"
+  },
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
+  "background": {
+    "color": {
+      "light": "#EFECE3",
+      "dark": "#1e1d1f"
+    }
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -26,37 +36,46 @@
       "format": "woff2"
     }
   },
-  "appearance": {
-    "default": "system",
-    "strict": false
-  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Build",
         "groups": [
           {
             "group": "Getting started",
+            "expanded": false,
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "developers/quick-start",
+              "developers/proof-lifecycle"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Introduction",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "developers/what",
+              "developers/why"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Core Concepts",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "developers/tutorials/build",
+              "developers/tutorials/auction",
+              "developers/tutorials/request",
+              "developers/tutorials/tracking",
+              "developers/tutorials/use",
+              "developers/tutorials/troubleshooting"
+            ]
+          },
+          {
+            "group": "Tutorials",
+            "pages": [
+              "developers/tutorials/callbacks",
+              "developers/tutorials/proof-composition",
+              "developers/tutorials/proof-types",
+              "developers/tutorials/bonsai",
+              "developers/tutorials/sensitive-inputs",
+              "developers/tutorials/smart-contract-requestor"
             ]
           },
           {
@@ -70,7 +89,47 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Prove",
+        "groups": [
+          {
+            "group": "API documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "$ZKC",
+        "groups": [
+          {
+            "group": "API documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "ZK Mining",
         "groups": [
           {
             "group": "API documentation",
@@ -89,21 +148,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "navbar": {
     "links": [
@@ -141,5 +186,9 @@
       "github": "https://github.com/boundless-xyz",
       "discord": "https://discord.com/invite/boundlessxyz"
     }
+  },
+  "interaction": 
+  {
+    "drilldown": true
   }
 }
