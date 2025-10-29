@@ -1,13 +1,34 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "mintlify-docs",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.png"
+  },
   "favicon": "/favicon.svg",
+  "fonts": {
+    "heading": {
+      "family": "Self Modern",
+      "source": "/fonts/self-modern/SelfModernSemiBold.woff2",
+      "weight": 700,
+      "format": "woff2"
+    },
+    "body": {
+      "family": "Replica",
+      "source": "/fonts/replica/ReplicaRegular.woff2",
+      "format": "woff2"
+    }
+  },
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
   "navigation": {
     "tabs": [
       {
@@ -83,21 +104,22 @@
       ]
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Explorer",
+        "href": "https://explorer.boundless.network/orders",
+        "icon": "magnifying-glass-arrow-right"
+      },
+      {
+        "label": "Support Forum",
+        "href": "https://github.com/boundless-xyz/boundless/discussions",
+        "icon": "circle-question"
       }
     ],
     "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "type": "github",
+      "href": "https://github.com/boundless-xyz/boundless"
     }
   },
   "contextual": {
