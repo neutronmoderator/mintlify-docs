@@ -42,18 +42,18 @@
         "tab": "Build",
         "groups": [
           {
+            "group": "Introduction",
+            "pages": [
+              "developers/what",
+              "developers/why"
+            ]
+          },
+          {
             "group": "Getting started",
             "expanded": false,
             "pages": [
               "developers/quick-start",
               "developers/proof-lifecycle"
-            ]
-          },
-          {
-            "group": "Introduction",
-            "pages": [
-              "developers/what",
-              "developers/why"
             ]
           },
           {
@@ -79,11 +79,36 @@
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Smart Contracts",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "developers/smart-contracts/reference/todo",
+              "developers/smart-contracts/deployments",
+              "developers/smart-contracts/verifier-contracts"
+            ]
+          },
+          {
+            "group": "Dev Tooling",
+            "icon": "code",
+            "pages": [
+              "developers/tooling/sdk",
+              "developers/tooling/cli"
+            ]
+          },
+          {
+            "group": "Steel",
+            "pages": [
+              "developers/steel/quick-start",
+              "developers/steel/what-is-steel",
+              "developers/steel/how-it-works",
+              "developers/steel/commitments",
+              "developers/steel/history",
+              "developers/steel/events"
+            ]
+          },
+          {
+            "group": "Kailua",
+            "pages": [
+              "developers/kailua/intro"
             ]
           }
         ]
@@ -92,18 +117,19 @@
         "tab": "Prove",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Getting Started",
             "pages": [
-              "api-reference/introduction"
+              "provers/quick-start"              
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Core Concepts",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "provers/proving-stack",
+              "provers/broker",
+              "provers/monitoring",
+              "provers/performace-optimization",
+              "provers/bento"
             ]
           }
         ]
@@ -112,38 +138,20 @@
         "tab": "$ZKC",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Getting Started",
             "pages": [
-              "api-reference/introduction"
+              "zkc/quick-start",
+              "zkc/collateral"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "ZK Mining",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "ZK Mining",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "zkc/mining/overview",
+              "zkc/mining/wallet-setup",
+              "zkc/mining/enable",
+              "zkc/mining/walkthrough",
+              "zkc/mining/claiming-rewards"
             ]
           }
         ]
@@ -187,8 +195,7 @@
       "discord": "https://discord.com/invite/boundlessxyz"
     }
   },
-  "interaction": 
-  {
+  "interaction": {
     "drilldown": true
   }
 }
