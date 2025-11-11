@@ -3,8 +3,6 @@ title: Sensitive Inputs via AWS S3
 description: This tutorial shows how to upload program inputs to Amazon S3, and use IAM roles and optionally SSE-KMS to gate access to specific trusted Boundless provers. It also shows how a prover can access these sensitive inputs.
 ---
 
-import { StripRustCodeComments } from "../../../components/strip-rust-code-comments";
-
 # Sensitive Inputs via AWS S3
 
 When [requesting a proof](/developers/tutorials/build), requestors need to upload both their program binary (ELF) and the associated inputs to a compatible storage provider.

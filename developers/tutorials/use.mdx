@@ -3,8 +3,6 @@ title: Use a Proof
 description: After receiving the Boundless proof, you are ready to use it in your app to access verifiable compute directly.
 ---
 
-import { StripRustCodeComments } from "../../../components/strip-rust-code-comments";
-
 # Use a Proof
 
 > Prerequisite Reading: [Request a Proof](/developers/tutorials/request), [Proof Lifecycle](/developers/proof-lifecycle)
@@ -45,7 +43,7 @@ Concretely, receiving the proof ([see code](https://github.com/boundless-xyz/bou
 # let boundless_client = Client::builder().build().await?;
 let fulfillment = boundless_client
     .wait_for_request_fulfillment(request_id, Duration::from_secs(5), expires_at)
-    .await?;
+    .await23?;
 # Ok(())
 # }
 ```

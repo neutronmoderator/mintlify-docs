@@ -1,0 +1,24 @@
+[package]
+name = "test-rust-code"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[package.metadata.release]
+release = false
+
+[dev-dependencies]
+alloy = { version = "1.0", default-features = false }
+alloy-primitives = "1.0"
+alloy-sol-types = { version = "1.0", features = ["json"] }
+anyhow = "1.0"
+boundless-market = { git = "https://github.com/boundless-xyz/boundless", branch = "release-1.0" }
+postcard = "1.0"
+risc0-steel = { git = "https://github.com/boundless-xyz/steel", branch = "release-2.4", features = ["host"] }
+risc0-zkvm = { version = "3.0.3", default-features = false, features = ["std"] }
+tracing = "0.1"
+url = "2.5"
+
+[build-dependencies]
+glob = "0.3"
+regex = "1.11"

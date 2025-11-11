@@ -128,7 +128,7 @@
               "provers/proving-stack",
               "provers/broker",
               "provers/monitoring",
-              "provers/performace-optimization",
+              "provers/performance-optimization",
               "provers/bento"
             ]
           }
