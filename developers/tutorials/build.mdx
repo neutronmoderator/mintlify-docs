@@ -1,16 +1,18 @@
 ---
 title: Build a Program
-description: This page covers the Boundless Foundry Template program as a quick start.
+description: Learn how to build a guest program
+icon: hammer
 ---
 
-# Build a Program
+import { StripRustCodeComments } from "/snippets/strip-rust-code-comments.jsx"
+
+
+<Tip>
+This page covers the [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foundry-template/) as a quick start.
+</Tip>
 
 At its core, Boundless allows app developers to receive zero-knowledge (ZK) proofs for their programs.
 Before [requesting a proof](/developers/tutorials/request), developers should have a program that compiles and executes successfully.
-
-:::note
-This page covers the [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foundry-template/) as a quick start.
-:::
 
 If you want to read more about the zkVM, it is highly recommended to read the following pages on the [zkVM dev docs](https://dev.risczero.com/api):
 
@@ -27,9 +29,9 @@ For some more intermediate and advanced reading on the zkVM, please refer to:
 - [zkVM Technical Specification](https://dev.risczero.com/api/zkvm/zkvm-specification)
 - [The RISC Zero STARK Protocol](https://dev.risczero.com/proof-system/proof-system-sequence-diagram)
 
-:::tip[Tip]
+<Tip>
 If you have any technical questions about the zkVM, please join [RISC Zero's Discord](https://discord.com/invite/risczero) and ask away. 👋
-:::
+</Tip>
 
 ## Boundless Foundry Template
 
@@ -47,9 +49,7 @@ The example app executes the following steps:
 3. Retrieves the proof from Boundless.
 4. Sends the proof to the application contract.
 
-<a href="/boundless-foundry-template.png">
-  <img src="/boundless-foundry-template.png" alt="Boundless Foundry Template" />
-</a>
+![Boundless Foundry Template](/images/boundless-foundry-template.png)
 
 The zkVM program for this example app is a simple program that takes an input number, checks if it is even and if so, outputs the number to the public outputs of the computation (known as the [journal](https://dev.risczero.com/terminology#journal)).
 
@@ -57,6 +57,7 @@ The entire program is only \~20 lines, so let's run through it:
 
 ### [`is-even`](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/contracts/src/EvenNumber.sol)
 
+<StripRustCodeComments>
 ```rust
 use std::io::Read;
 
@@ -81,7 +82,7 @@ fn main() {
     env::commit_slice(number.abi_encode().as_slice());
 }
 ```
-
+</StripRustCodeComments>
 First, the guest receive inputs from the host program, and then these input bytes are decoded and parsed:
 
 <StripRustCodeComments>

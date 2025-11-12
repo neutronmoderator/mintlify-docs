@@ -1,0 +1,79 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "willow",
+  "name": "Boundless",
+  "colors": {
+    "primary": "#16A34A"
+  },
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
+  "background": {
+    "color": {
+      "light": "#EFECE3",
+      "dark": "#1e1d1f"
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": {
+    "light": "/logo/favicon.svg",
+    "dark": "/logo/favicon-dark.svg"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Self Modern",
+      "source": "/fonts/self-modern/SelfModernSemiBold.woff2",
+      "weight": 700,
+      "format": "woff2"
+    },
+    "body": {
+      "family": "Replica",
+      "source": "/fonts/replica/ReplicaRegular.woff2",
+      "format": "woff2"
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Explorer",
+        "href": "https://explorer.boundless.network/orders",
+        "icon": "magnifying-glass-arrow-right"
+      },
+      {
+        "label": "Support Forum",
+        "href": "https://github.com/boundless-xyz/boundless/discussions",
+        "icon": "circle-question"
+      }
+    ],
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/boundless-xyz/boundless"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/boundless_xyz",
+      "github": "https://github.com/boundless-xyz",
+      "discord": "https://discord.com/invite/boundlessxyz"
+    }
+  },
+  "interaction": {
+    "drilldown": true
+  }
+}

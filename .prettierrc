@@ -1,0 +1,37 @@
+# Global defaults for all supported file types
+tabWidth: 2
+useTabs: false
+
+# Overrides for specific file types
+overrides:
+  # JavaScript & MDX
+  - files: "*.{js,jsx,mdx}"
+    options:
+      # Use semicolons to avoid ASI issues.
+      semi: true
+      # Use single quotes for cleaner strings in HTML/JSX.
+      singleQuote: true
+      # Keep trailing commas for cleaner diffs and git history.
+      trailingComma: es5
+
+  # CSS
+  - files: "*.{css,scss,sass}"
+    options:
+      # CSS doesn't need semicolons at the end of a file.
+      semi: false
+
+  # JSON
+  - files: "*.json"
+    options:
+      # JSON spec requires double quotes.
+      singleQuote: false
+      # Trailing commas are invalid in strict JSON.
+      trailingComma: none
+
+  # YAML
+  - files: "*.{yml,yaml}"
+    options:
+      # YAML doesn't use semicolons.
+      semi: false
+      # Quotes are often unnecessary in YAML.
+      singleQuote: false

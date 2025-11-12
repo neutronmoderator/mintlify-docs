@@ -1,11 +1,9 @@
-import React, { useState, useMemo } from "react";
-
-export default function TimeCalculator() {
-  const [cycleCount, setCycleCount] = useState(10);
-  const [cycleUnit, setCycleUnit] = useState("mcycles");
-  const [showAdvanced, setShowAdvanced] = useState(false);
-  const [executionMhz, setExecutionMhz] = useState("30");
-  const [provingMhz, setProvingMhz] = useState("1");
+export const TimeCalculator = () => {
+  const [cycleCount, setCycleCount] = React.useState(10);
+  const [cycleUnit, setCycleUnit] = React.useState("mcycles");
+  const [showAdvanced, setShowAdvanced] = React.useState(false);
+  const [executionMhz, setExecutionMhz] = React.useState("30");
+  const [provingMhz, setProvingMhz] = React.useState("1");
 
   const handleNumericInput = (e, setter) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
@@ -20,7 +18,7 @@ export default function TimeCalculator() {
     }
   };
 
-  const { estimatedExecutionTime, estimatedProvingTime } = useMemo(() => {
+  const { estimatedExecutionTime, estimatedProvingTime } = React.useMemo(() => {
     let multiplier = 1;
     if (cycleUnit === "mcycles") {
       multiplier = 1_000_000;
@@ -145,5 +143,4 @@ export default function TimeCalculator() {
       </div>
     </div>
   );
-}
-
+};

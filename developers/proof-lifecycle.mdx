@@ -1,25 +1,20 @@
 ---
 title: Proof Lifecycle
-description: The lifecycle of a proof on Boundless.
+description: Following a proof from request to verification
+icon: recycle
 ---
 
-# Proof Lifecycle
-
-> Prerequisite Reading: [Why Boundless?](/developers/why), [What is Boundless?](/developers/what)
-
-:::note[Note]
+<Info>
 Please refer to the [Boundless Terminology](/developers/terminology) page, and the [zkVM Terminology](https://dev.risczero.com/terminology) page for any unfamiliar terms.
-:::
+</Info>
 
 On this page, the entirety of a proof's lifetime in the Boundless Market is covered; starting from a proof request to bid submission and lock in by a prover, through to proof submission and finally to proof verification.
 
 This overview is aimed at app developers i.e., requestors, and therefore for simplicity, it will abstract some complexity away from the specifics of provers. This will be covered in its entirety at a later stage for public access testnet.
 
-<a href="/proof-lifecycle.png">
-  <img src="/proof-lifecycle.png" alt="Proof Lifecycle" />
-</a>
-
-> Figure 1: A process diagram following the lifecycle of a proof chronologically in the Boundless Market.
+<Frame caption="Figure 1: A process diagram following the lifecycle of a proof chronologically in the Boundless Market.">
+  <img src="/images/proof-lifecycle.png" alt="The lifecycle of a Boundless Proof" />
+</Frame>
 
 ## Overview of Proof Lifecycle
 
@@ -34,13 +29,13 @@ This overview is aimed at app developers i.e., requestors, and therefore for sim
 
 ### 1. The App Developer Writes a Program for the zkVM
 
-> see [Build A Program](/developers/tutorials/build), and [Getting Started with the zkVM](https://dev.risczero.com/api/zkvm/quickstart).
+<Info>
+For more info, see [Build A Program](/developers/tutorials/build), and [Getting Started with the zkVM](https://dev.risczero.com/api/zkvm/quickstart).
+</Info>
 
 The app developer begins their Boundless journey by writing an application for the zkVM in Rust. The zkVM provides a zero-knowledge proof of the correct execution of this program. A proof of execution is a receipt; it contains the output― the journal and the cryptographic proof - the seal. The seal is the cryptographic proof. In [zkVM terminology](https://dev.risczero.com/terminology#seal), the seal usually refers to a zk-STARK or SNARK. In Boundless, the seal is a Merkle inclusion proof into an aggregated proof.
 
 With a zkVM program ready, the app developer will require some way to carry out proving. This can be done [locally](https://dev.risczero.com/api/generating-proofs/local-proving), but requires significant hardware investment and maintenance long-term, especially to enable parallelized GPU proving. The Boundless Market allows for anyone to request a proof, regardless of their hardware, they are known as requestors. Boundless handles the connection between requestors and provers i.e., people with dedicated and significant proving hardware, to facilitate proving in a decentralized and permissionless manner.
-
-> For more zkVM documentation, please see [Getting Started with the zkVM](https://dev.risczero.com/api/zkvm/quickstart).
 
 ### 2. The App Developer (Requestor) Broadcasts a Proof Request to the Boundless Market
 
@@ -80,31 +75,30 @@ For more details, please see [Set up the Auction](/developers/tutorials/auction)
 
 #### BoundlessMarket.sol - `submitRequest`
 
-The BoundlessMarket contract has a `submitRequest` function:
+The BoundlessMarket contract has a `submitRequest` [function](https://github.com/boundless-xyz/boundless/blob/5ce8161abdb6f25d0945e2e6afcbba7825005a7e/contracts/src/BoundlessMarket.sol#L157):
 
-```solidity [BoundlessMarket.sol]
+```solidity 
 function submitRequest(ProofRequest calldata request, bytes calldata clientSignature);
 ```
 
 The request parameters are passed through in the `ProofRequest` struct:
 
 ```solidity
+/// @title Proof Request Struct and Library
+/// @notice Represents a proof request with its associated data and functions.
 struct ProofRequest {
-  /// @notice Unique ID for this request, constructed from the client address and a 32-bit index.
-  /// Constructed as (address(client) << 32) | index.
-  /// @dev Note that the high-order 64 bits of this ID are currently unused and must set to zero.
-  /// In the future it may be used to encode a version number and/or other flags.
-  uint256 id;
-  /// Requirements of the delivered proof. Specifies the program that must be run, and constrains
-  /// value of the journal, specifying the statement that is requesting to be proven.
-  Requirements requirements;
-  /// A public URI where the program (image) can be downloaded. This URI will be accessed by
-  /// provers that are evaluating whether to bid on the request.
-  string imageUrl;
-  /// Input to be provided to the zkVM guest execution.
-  Input input;
-  /// Offer specifying how much the client is willing to pay to have this request fulfilled.
-  Offer offer;
+    /// @notice Unique ID for this request, constructed from the client address and a 32-bit index.
+    RequestId id;
+    /// @notice Requirements of the delivered proof.
+    /// @dev Specifies the program that must be run, constrains the value of the journal, and specifies a callback required to be called when the proof is delivered.
+    Requirements requirements;
+    /// @notice A public URI where the program (i.e. image) can be downloaded.
+    /// @dev This URI will be accessed by provers that are evaluating whether to bid on the request.
+    string imageUrl;
+    /// @notice Input to be provided to the zkVM guest execution.
+    Input input;
+    /// @notice Offer specifying how much the client is willing to pay to have this request fulfilled.
+    Offer offer;
 }
 ```
 
@@ -112,14 +106,13 @@ With Requirements:
 
 ```solidity
 struct Requirements {
-    bytes32 imageId;
     Callback callback;
     Predicate predicate;
     bytes4 selector;
 }
 ```
 
-The requirements of the proof specify the exact program that must be run (identified by the [Image ID](https://dev.risczero.com/terminology#image-id)). The predicate refers to a specific constraint on the value of the journal, the public outputs. During proof verification, the image ID and the journal are checked to make sure that the proof fulfills the request. The callback specifies a callback required to be called when the proof is delivered. The selector specifies the required proof type (e.g., Groth16 or Merkle inclusion proof).
+The predicate refers to a specific constraint on the value of the journal, the public outputs. During proof verification, the image ID and the journal are checked to make sure that the proof fulfills the request. The callback specifies a callback required to be called when the proof is delivered. The selector specifies the required proof type (e.g., Groth16 or Merkle inclusion proof).
 
 ### 3. Provers Bid on the Request
 

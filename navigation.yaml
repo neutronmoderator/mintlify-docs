@@ -1,0 +1,86 @@
+tabs:
+  - tab: "Build"
+    groups:
+      - group: "Introduction"
+        icon: "school"
+        pages:
+          - "developers/what"
+          - "developers/why"
+
+      - group: "Getting started"
+        expanded: false
+        pages:
+          - "developers/quick-start"
+          - "developers/proof-lifecycle"
+
+      - group: "Core Concepts"
+        pages:
+          - "developers/tutorials/build"
+          - "developers/tutorials/auction"
+          - "developers/tutorials/request"
+          - "developers/tutorials/tracking"
+          - "developers/tutorials/use"
+          - "developers/tutorials/troubleshooting"
+
+      - group: "Tutorials"
+        pages:
+          - "developers/tutorials/callbacks"
+          - "developers/tutorials/proof-composition"
+          - "developers/tutorials/proof-types"
+          - "developers/tutorials/bonsai"
+          - "developers/tutorials/sensitive-inputs"
+          - "developers/tutorials/smart-contract-requestor"
+
+      - group: "Smart Contracts"
+        pages:
+          - "developers/smart-contracts/smart-contract-docs"
+          - "developers/smart-contracts/deployments"
+          - "developers/smart-contracts/verifier-contracts"
+
+      - group: "Dev Tooling"
+        icon: "code"
+        pages:
+          - "developers/tooling/sdk"
+          - "developers/tooling/cli"
+
+      - group: "Steel"
+        pages:
+          - "developers/steel/quick-start"
+          - "developers/steel/what-is-steel"
+          - "developers/steel/how-it-works"
+          - "developers/steel/commitments"
+          - "developers/steel/history"
+          - "developers/steel/events"
+
+      - group: "Kailua"
+        pages:
+          - "developers/kailua/intro"
+
+  - tab: "Prove"
+    groups:
+      - group: "Getting Started"
+        pages:
+          - "provers/quick-start"
+
+      - group: "Core Concepts"
+        pages:
+          - "provers/proving-stack"
+          - "provers/broker"
+          - "provers/monitoring"
+          - "provers/performance-optimization"
+          - "provers/bento"
+
+  - tab: "$ZKC"
+    groups:
+      - group: "Getting Started"
+        pages:
+          - "zkc/quick-start"
+          - "zkc/collateral"
+
+      - group: "ZK Mining"
+        pages:
+          - "zkc/mining/overview"
+          - "zkc/mining/wallet-setup"
+          - "zkc/mining/enable"
+          - "zkc/mining/walkthrough"
+          - "zkc/mining/claiming-rewards"

@@ -1,10 +1,4 @@
-import type React from "react";
-
-interface YoutubeEmbedProps {
-  videoId: string;
-}
-
-export const YoutubeEmbed: React.FC<YoutubeEmbedProps> = ({ videoId }) => {
+export const YoutubeEmbed = ({ videoId }) => {
   return (
     <div
       style={{

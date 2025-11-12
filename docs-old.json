@@ -36,54 +36,13 @@
       "format": "woff2"
     }
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Explorer",
-        "href": "https://explorer.boundless.network/orders",
-        "icon": "magnifying-glass-arrow-right"
-      },
-      {
-        "label": "Support Forum",
-        "href": "https://github.com/boundless-xyz/boundless/discussions",
-        "icon": "circle-question"
-      }
-    ],
-    "primary": {
-      "type": "github",
-      "href": "https://github.com/boundless-xyz/boundless"
-    }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/boundless_xyz",
-      "github": "https://github.com/boundless-xyz",
-      "discord": "https://discord.com/invite/boundlessxyz"
-    }
-  },
-  "interaction": {
-    "drilldown": true
-  },
-  "navigation": {
+"navigation": {
     "tabs": [
       {
         "tab": "Build",
         "groups": [
           {
             "group": "Introduction",
-            "icon": "school",
             "pages": [
               "developers/what",
               "developers/why"
@@ -160,7 +119,7 @@
           {
             "group": "Getting Started",
             "pages": [
-              "provers/quick-start"
+              "provers/quick-start"              
             ]
           },
           {
@@ -198,5 +157,45 @@
         ]
       }
     ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Explorer",
+        "href": "https://explorer.boundless.network/orders",
+        "icon": "magnifying-glass-arrow-right"
+      },
+      {
+        "label": "Support Forum",
+        "href": "https://github.com/boundless-xyz/boundless/discussions",
+        "icon": "circle-question"
+      }
+    ],
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/boundless-xyz/boundless"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/boundless_xyz",
+      "github": "https://github.com/boundless-xyz",
+      "discord": "https://discord.com/invite/boundlessxyz"
+    }
+  },
+  "interaction": {
+    "drilldown": true
   }
 }
