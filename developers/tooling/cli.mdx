@@ -1,12 +1,18 @@
-# Boundless CLI
+---
+title: Boundless CLI
+description: An overview of the Boundless CLI for requestors, provers and claiming rewards.
+icon: terminal
+---
 
-:::note[Boundless CLI Source code]
-The Boundless CLI source code can be found at [boundless/crates/boundless-cli](https://github.com/boundless-xyz/boundless/tree/main/crates/boundless-cli).
-:::
+## Overview
 
 `boundless` is a command-line interface for interacting with the Boundless Market, specifically designed to help requestors and provers with common interactions
 
 ## Installation
+
+<Note>
+The Boundless CLI source code can be found at [boundless/crates/boundless-cli](https://github.com/boundless-xyz/boundless/tree/main/crates/boundless-cli).
+</Note>
 
 You'll need to [install Rust](https://doc.rust-lang.org/cargo/getting-started/installation.html), then you can run the following command to install the CLI.
 
@@ -20,7 +26,7 @@ cargo install --locked --git https://github.com/boundless-xyz/boundless boundles
 
 Once installed, simply running `boundless` gives a helpful overview:
 
-![Boundless CLI](/boundless_cli_main.png)
+![Boundless CLI](/images/boundless_cli_main.png)
 
 The CLI has three main modules:
 
@@ -257,7 +263,7 @@ To submit a proof, a valid `request.yaml` is required, this config file will spe
 
 Below is an example of a `request.yaml` file that can be used with the `boundless submit request` command.
 
-```yaml [request.yaml]
+```yaml request.yaml
 # Unique ID for this request, constructed from the client address and a 32-bit index.
 # Constructed as (address(client) << 32) | index
 id: 0 # if set to 0, gets overwritten by a random id
@@ -298,27 +304,27 @@ offer:
 
 To submit a request, export or create a `.env` file with the following environment variables:
 
-```bash [Terminal]
+```bash Terminal
 export RPC_URL="https://ethereum-sepolia-rpc.publicnode.com"
 export PRIVATE_KEY="YOUR_SEPOLIA_WALLET_PRIVATE_KEY"
 ```
 
 Then run the following command:
 
-```bash [Terminal]
+```bash Terminal
 RUST_LOG=info boundless request submit request.yaml
 ```
 
 To wait until the submitted request has been fulfilled, the `--wait` option can be added:
 
-```bash [Terminal]
+```bash Terminal
 # [!code word:--wait]
 RUST_LOG=info boundless request submit request.yaml --wait
 ```
 
 And to submit the request to the offchain order-stream service, make a deposit and then run `request submit` with `--offchain`.
 
-```bash [Terminal]
+```bash Terminal
 # [!code word:--offchain]
 RUST_LOG=info boundless account deposit 0.002 # Enough for the request above; deposit more to cover multiple requests.
 RUST_LOG=info boundless request submit request.yaml --wait --offchain

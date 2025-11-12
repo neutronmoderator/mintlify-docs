@@ -1,10 +1,13 @@
-# Introducing OP Kailua: A Hybrid Architecture for OP Rollups
+---
+title: Introduction to Kailua
+description: 
+icon: bullhorn
+---
 
-:::warning[Caution]
+<Warning>
 `OP Kailua` as well as `kona` are still in active development and are NOT recommended for production usage.
 The code is open source and can be found at [risc0/kailua](https://github.com/risc0/kailua).
-:::
-
+</Warning>
 
 ## Brief History
 
@@ -16,9 +19,9 @@ In November 2024, RISC Zero announced Kailua and open sourced the code which can
 
 ## What exactly is OP Kailua?
 
-:::note
+<Note>
 Not to be confused with the town in the Hawaiian district of Kona, OP Kailua is a suite of tools and contracts to migrate rollups from long interactive fault proving systems to short non-interactive ZK fault proofs generated using the RISC Zero zkVM.
-:::
+</Note>
 
 ### TL;DR
 
@@ -36,7 +39,7 @@ The main components are:
 3. **A state proposer agent** that advances the rollup state under the rules of the ZK game.
 4. **A rollup validator agent** that challenges and proves any state transition faults in ZK.
 
-> **Note**: The minimum OP stack version required to use OP Kailua is V1.4 because it leverages the `DisputeGameFactory` contract instead of the deprecated `L2OutputOracle` contract.
+**Note**: The minimum OP stack version required to use OP Kailua is V1.4 because it leverages the `DisputeGameFactory` contract instead of the deprecated `L2OutputOracle` contract.
 
 ## OP Kailua Solves Core Rollup Problems
 
@@ -103,9 +106,9 @@ The rules for bisection-based dispute games involve timeouts:
 
 These timeouts define the “Finality Period”. In current designs, a wealthy attacker could sacrifice their own collateral to force defenders to repeatedly respond, potentially exhausting their resources. Rollups like Arbitrum are adopting new dispute protocols (like **BoLD**) that aim to set a constant upper-bound (~6.3 days) on the timeout for open disputes.
 
-:::note[Spoiler]
+<Note>
 OP Kailua reduces this timeout to **as little as an hour** and removes the potential for resource-exhaustion attacks!
-:::
+</Note>
 
 ### Enter General-Purpose ZK
 

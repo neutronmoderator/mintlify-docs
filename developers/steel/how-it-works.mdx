@@ -1,6 +1,10 @@
-# How does Steel work?
+---
+title: How does Steel work?
+description: A guide to how Steel works.
+icon: face-thinking
+---
 
-A fundamental operation in smart contracts is to look up data from other contracts, such as the ERC20 token balance of a specific address. This operation is known as a “view call” \- it “views” state without altering it. Steel allows developers to query EVM state, within the zkVM, by just defining the Solidity method they wish to view call (using alloy’s [sol\! macro][sol-macro]).
+A fundamental operation in smart contracts is to look up data from other contracts, such as the ERC20 token balance of a specific address. This operation is known as a “view call” \- it “views” state without altering it. Steel allows developers to query EVM state, within the zkVM, by just defining the Solidity method they wish to view call (using alloy’s [sol\! macro](https://alloy.rs/contract-interactions/using-sol%21/)).
 
 ```rust
 alloy::sol!(
@@ -10,9 +14,9 @@ alloy::sol!(
 );
 ```
 
-_This code is taken from the erc20-counter example, which you can find [here]._
+_This code is taken from the erc20-counter example, which you can find [here](https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter)._
 
-The sol! macro parses Solidity syntax to generate Rust types; this is used to call the `balanceOf` function, within the [guest program], using `balanceOfCall`:
+The sol! macro parses Solidity syntax to generate Rust types; this is used to call the `balanceOf` function, within the [guest program](https://dev.risczero.com/terminology#guest-program), using `balanceOfCall`:
 
 {/* <StripRustCodeComments> */}
 ```rust
@@ -59,7 +63,7 @@ env::commit_slice(&journal.abi_encode());
 
 The zkVM guest has no network connection, and there is no way to call an RPC provider to carry out the view call from within the guest; so how does Steel make this possible?
 
-Steel’s key innovation is the use of [revm] for simulation of an _EVM environment_ within the guest program. This EVM environment has the necessary state populated from RPC calls, and verified with Merkle storage proofs, to carry out verifiable execution of view calls. In the [host program], the [preflight call] constructs the EVM environment, `evm_env` which is passed through as input to the guest program:
+Steel’s key innovation is the use of [revm](https://docs.rs/revm/latest/revm/) for simulation of an _EVM environment_ within the guest program. This EVM environment has the necessary state populated from RPC calls, and verified with Merkle storage proofs, to carry out verifiable execution of view calls. In the [host program](https://dev.risczero.com/terminology#host-program), the [preflight call](https://risc0.github.io/risc0-ethereum/risc0_steel/struct.Contract.html#method.preflight) constructs the EVM environment, `evm_env` which is passed through as input to the guest program:
 
 {/* <StripRustCodeComments> */}
 ```rust
@@ -89,7 +93,7 @@ let evm_input = env.into_input().await?;
 ```
 {/* </StripRustCodeComments> */}
 
-The `preflight` step calls the RPC provider for the necessary state and for the Merkle storage proofs via `eth_getProof` ([EIP-1186]). These Merkle proofs are given to the guest which verifies them to prove that the RPC data is valid, without having to run a full node and without trusting the host or RPC provider.
+The `preflight` step calls the RPC provider for the necessary state and for the Merkle storage proofs via `eth_getProof` ([EIP-1186](https://eips.ethereum.org/EIPS/eip-1186)). These Merkle proofs are given to the guest which verifies them to prove that the RPC data is valid, without having to run a full node and without trusting the host or RPC provider.
 
 ## Verifying the proof onchain
 
@@ -132,18 +136,6 @@ contract Counter {
 }
 ```
 
-Within a single proof, we’ve seen Steel can handle view calls orders of magnitude larger than onchain execution can handle. Specifically, one partner application has shown gas savings of 1.2 _billion_ gas for a contract call using around 400,000 SLOADs. 1.2 billion gas is around 30 _blocks_ worth of execution and this can be verified onchain in one proof, that costs under $10 to generate, and less than 300k gas to verify (see [RISC Zero’s verification contracts][verifier-contracts]).
+Within a single proof, we’ve seen Steel can handle view calls orders of magnitude larger than onchain execution can handle. Specifically, one partner application has shown gas savings of 1.2 _billion_ gas for a contract call using around 400,000 SLOADs. 1.2 billion gas is around 30 _blocks_ worth of execution and this can be verified onchain in one proof, that costs under $10 to generate, and less than 300k gas to verify (see [RISC Zero’s verification contracts](https://dev.risczero.com/api/blockchain-integration/contracts/verifier)).
 
 With proof aggregation, cost savings are amortized even further, by taking multiple separate applications of RISC Zero, and wrapping them all up into a single SNARK.
-Aggregation is a key feature of [Boundless][boundless-website].
-
-[sol-macro]: https://alloy.rs/contract-interactions/using-sol%21/
-[here]: https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter
-[guest program]: https://dev.risczero.com/terminology#guest-program
-[revm]: https://docs.rs/revm/latest/revm/
-[preflight call]: https://risc0.github.io/risc0-ethereum/risc0_steel/struct.Contract.html#method.preflight
-[host program]: https://dev.risczero.com/terminology#host-program
-[EIP-1186]: https://eips.ethereum.org/EIPS/eip-1186
-[verifier-contracts]: https://dev.risczero.com/api/blockchain-integration/contracts/verifier
-[What is Steel?]: ./what-is-steel.md
-[Steel Commitments]: ./steel-commitments.md

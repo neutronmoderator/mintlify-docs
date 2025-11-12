@@ -1,4 +1,8 @@
-# Steel History
+---
+title: Steel History
+description: How far can you go back in history with Steel?
+icon: rectangle-vertical-history
+---
 
 ## Why use Steel history?
 
@@ -10,7 +14,7 @@ When verifying a Steel call onchain, it is critical to verify the commitment, an
   Only Steel calls against one of the last 256 blocks (approximately ~50 minutes with 12 second block time) can be verified with this method.
 * Beacon block commitments, when using L1 Ethereum, are verified with the [EIP-4788] beacon roots contract.
   This technique extends the validation time to just over 24 hours.
-  See the [Steel Commitments] page for further information.
+  See the [Steel Commitments](/developers/steel/commitments) page for further information.
 
 This age limit is a consequence of the way Ethereum-based blockchains store relevant block data.
 For the developer, this means that, **by default, Steel proofs verified onchain can reference data no more than 24 hours old**.
@@ -68,13 +72,13 @@ Once onchain, successfully validating the Steel commitment will prove the integr
 ## How far can you go back?
 
 There is a hard limit on how far back in time you can place the execution block:
-the entire validation procedure depends on [EIP-4788] which was introduced with the [Cancun upgrade] on March 13 2024;
+the entire validation procedure depends on [EIP-4788](https://eips.ethereum.org/EIPS/eip-4788) which was introduced with the [Cancun upgrade](https://ethereum.org/en/history/#cancun-summary) on March 13 2024;
 this is the furthest that Steel history can go back.
 
 ## How much does Steel history cost?
 
 For the host, the developer needs to specify valid RPC URLs for both an archive execution node and a beacon node.
-You can see an example in the [publisher.rs] CLI args for the [erc20-counter] example.
+You can see an example in the [publisher.rs](https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter/apps/src/bin/publisher.rs) CLI args for the [erc20-counter](https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter) example.
 
 The greatest API cost will likely be from the beacon API endpoint.
 For each block between the commitment block and the execution block, Steel will query the full beacon block for verification.
@@ -85,12 +89,6 @@ For every extra 24 hours of history, this is just under 500,000 cycles in the St
 
 ## Using Steel History
 
-**To see example code, please see the [publisher app] for the erc20-counter example which has been updated to support Steel history.**
+**To see example code, please see the [publisher app](https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter/apps) for the erc20-counter example which has been updated to support Steel history.**
 
-[EIP-4788]: https://eips.ethereum.org/EIPS/eip-4788
-[beacon chain]: https://ethereum.org/en/roadmap/beacon-chain/
-[Steel Commitments]: /developers/steel/commitments
-[Cancun upgrade]: https://ethereum.org/en/history/#cancun-summary
-[publisher.rs]: https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter/apps/src/bin/publisher.rs
-[erc20-counter]: https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter
-[publisher app]: https://github.com/boundless-xyz/steel/tree/main/examples/erc20-counter/apps
+

@@ -1,4 +1,8 @@
-# Steel Events
+---
+title: Steel Events
+description: A guide to accessing event data verifiably onchain using Steel Events. 
+icon: bullhorn
+---
 
 ## What are events and why are they useful?
 
@@ -31,7 +35,7 @@ This unlocks sophisticated, trustless interactions using Ethereum’s inexpensiv
 
 Steel event syntax allows the developer to query events directly within their guest program. The Steel guest program can specify the event to query using [alloy’s `sol!` Macro](https://alloy.rs/contract-interactions/using-sol!#using-the-sol-macro). For example, we can specify the signature for the ERC20 Transfer event:
 
-```
+```rust
 sol! {
     /// ERC-20 transfer event signature.
     interface IERC20 {
@@ -42,7 +46,7 @@ sol! {
 
 To query all `Transfer` events in a single block for a specific token contract, we first must specify the contract address:
 
-```
+``` rust
 /// Address of the deployed contract to call the function on (USDT contract on Mainnet).
 const CONTRACT: Address = address!("dAC17F958D2ee523a2206206994597C13D831ec7");
 ```
@@ -61,7 +65,7 @@ The guest program requires the usual Steel workflow:
 
 After which, we are ready to query all `Transfer` events in a single block for the specified `CONTRACT`:
 
-```
+```rust
  // Query all `Transfer` events of the USDT contract.
     let event = Event::new::<IERC20::Transfer>(&env);
     let logs = event.address(CONTRACT).query();
@@ -69,14 +73,14 @@ After which, we are ready to query all `Transfer` events in a single block for t
 
 To grab the total USDT transferred across all the events in the pinned block, we iterate through each log, grab the `value` and `sum` them all into one uint256 type: total\_usdt
 
-```
+```rust
  // Process the events.
  let total_usdt = logs.iter().map(|log| log.data.value).sum::<U256>();
 ```
 
 And finally, we commit this sum, the [commitment](/developers/steel/commitments) data, and the event block hash to the journal, ready for validation onchain:
 
-```
+```rust
 // This commits the sum of all USDT transfers in the current block into the journal.
 let journal = Journal {
 commitment: env.into_commitment(),
@@ -93,7 +97,7 @@ env::commit_slice(&journal.abi_encode());
 
 The host program preflights the event query using the `Event::preflight` method. This populates the EVM environment with the relevant data ready for verification in the guest.
 
-```
+```rust
 // Preflight the event query to prepare the input that is required to execute the function in the guest without RPC access.
 
 let event = Event::preflight::<IERC20::Transfer>(&mut env);
@@ -107,26 +111,25 @@ log::info!(
 
 // Construct the input from the environment.
 let evm_input = env.into_input().await?;
-
 ```
 
 ## Running the Events Example
 
 To get started with events, you can use the [Steel Events example](https://github.com/boundless-xyz/steel/tree/main/examples/events):
 
-```
+```shell
 git clone https://github.com/boundless-xyz/steel.git && cd steel/examples/events
 ```
 
 To run the example:
 
-```
+```shell
 RPC_URL=https://ethereum-rpc.publicnode.com RUST_LOG=info cargo run --release
 ```
 
 This should give you something like this:
 
-```
+```shell
 Environment initialized with block 22144240
 Executing preflight querying event 'Transfer(address,address,uint256)'
 Contract 0xdAC17F958D2ee523a2206206994597C13D831ec7 emitted 36 events with signature: Transfer(address,address,uint256)
