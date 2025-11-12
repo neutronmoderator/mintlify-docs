@@ -18,10 +18,7 @@ The [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foun
 For technical support, please post your questions on the [Boundless Discussions Forum](https://github.com/boundless-xyz/boundless/discussions).
 </Tip>
 
-## Setup the app locally
-
-
-### Install RISC Zero
+## Install RISC Zero
 
 ```bash [Terminal]
 curl -L https://risczero.com/install | bash
@@ -30,7 +27,9 @@ rzup install
 
 See more about installation on the [RISC Zero docs](https://dev.risczero.com/api/zkvm/install).
 
-### Clone the repository
+## Clone the repository
+
+### Using Foundry
 
 You can either clone the repo using `git`, but we recommend using `forge init` (you'll need to install [Foundry](https://getfoundry.sh/introduction/installation/)):
 
@@ -38,7 +37,7 @@ You can either clone the repo using `git`, but we recommend using `forge init` (
 forge init --template https://github.com/boundless-xyz/boundless-foundry-template boundless-foundry-template && cd boundless-foundry-template
 ```
 
-#### Using git
+### Using Git
 
 ```bash [Terminal]
 git clone https://github.com/boundless-xyz/boundless-foundry-template
@@ -46,7 +45,7 @@ cd boundless-foundry-template
 git submodule update --init --recursive
 ```
 
-### Set up your environment variables
+## Set up your environment variables
 
 Export your Sepolia wallet private key as an environment variable (making sure it has enough funds), and export a valid RPC URL (you can use the public one provided):
 
@@ -66,7 +65,7 @@ If you'd like to deploy your own version of the `EvenNumber.sol` contract, pleas
 after which you can export your deployed contract address to EVEN_NUMBER_ADDRESS.
 :::
 
-### Run the example app
+## Run the example app
 
 The [example app](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/apps/src/main.rs) will submit a request to the market for a proof that "4" is an even number, wait for the request to be fulfilled, and then submit that proof to the EvenNumber contract, setting the public number variable to "4".
 

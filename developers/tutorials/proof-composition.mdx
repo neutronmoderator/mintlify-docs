@@ -1,13 +1,14 @@
 ---
 title: Proof Composition
 description: Proof composition allows you to build upon existing proofs by verifying them within new zkVM guest programs.
+icon: arrows-spin
 ---
 
-# Proof Composition
-
-> Prerequisite Reading: [Request a Proof](/developers/tutorials/request), [Proof Lifecycle](/developers/proof-lifecycle)
-
 ## Overview
+
+<Check>
+For example code of composition in action, please see the [Proof Composition Example](https://github.com/boundless-xyz/boundless/tree/main/examples/composition)
+</Check>
 
 Proof composition enables you to build upon existing proofs by verifying them within new zkVM guest programs. This is particularly useful when you want to prove a sequence of related statements without reproving each step.
 
@@ -22,7 +23,7 @@ Instead of reproving block `n`, you can:
 
 This approach is more efficient than reproving everything from scratch.
 
-## How it Works
+## How Composition Works
 
 Proof composition works by:
 
@@ -141,4 +142,3 @@ let tx_hash = pending_tx
 ```
 {/* </StripRustCodeComments> */}
 
-> Relevant links: [Proof Composition Example](https://github.com/boundless-xyz/boundless/tree/main/examples/composition)

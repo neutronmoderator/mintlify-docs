@@ -43,30 +43,27 @@ export const TimeCalculator = () => {
   }, [cycleCount, cycleUnit, executionMhz, provingMhz]);
 
   return (
-    <div className="my-8 rounded-lg border border-[var(--vocs-color_border)] p-6">
+    <div className="my-8 rounded-lg border border-[var(--vocs-color_border)] p-6 dark:border-gray-700">
       <div className="space-y-4">
         {/* Cycle Count Input */}
         <div>
-          <label
-            htmlFor="cycleCount"
-            className="mb-1 block text-sm"
+          <label             htmlFor="cycleCount"
+            className="mb-1 block text-sm dark:text-gray-300"
           >
             Cycle Count
           </label>
           <div className="flex items-center space-x-2">
-            <input
-              id="cycleCount"
+            <input               id="cycleCount"
               value={cycleCount}
               onChange={(e) => handleNumericInput(e, setCycleCount)}
-              className="w-full rounded border border-[var(--vocs-color_border)] px-3 py-2"
+              className="w-full rounded border border-[var(--vocs-color_border)] px-3 py-2 bg-white dark:bg-gray-800 dark:text-white dark:border-gray-700"
               placeholder="Enter cycle count"
             />
             <div className="relative">
-              <select
-                id="cycleUnit"
+              <select                 id="cycleUnit"
                 value={cycleUnit}
                 onChange={(e) => setCycleUnit(e.target.value)}
-                className="rounded border border-[var(--vocs-color_border)] bg-white px-3 py-2 pr-10"
+                className="rounded border border-[var(--vocs-color_border)] bg-white px-3 py-2 pr-10 dark:bg-gray-800 dark:text-white dark:border-gray-700"
                 style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'none' }}
               >
                 <option value="cycles">Cycles</option>
@@ -74,8 +71,8 @@ export const TimeCalculator = () => {
                 <option value="gcycles">GCycles</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-                <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <svg className="h-4 w-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" ></path>
                 </svg>
               </div>
             </div>
@@ -84,36 +81,33 @@ export const TimeCalculator = () => {
 
         {/* Advanced Settings */}
         <div>
-          <button
-            type="button"
+          <button             type="button"
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="flex items-center gap-1 text-gray-600 text-sm hover:text-gray-800"
+            className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:text-gray-800 dark:hover:text-gray-200"
           >
             {showAdvanced ? (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" ></path></svg>
             ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" ></path></svg>
             )}
             Advanced Settings
           </button>
           {showAdvanced && (
-            <div className="mt-2 space-y-4 rounded border border-[var(--vocs-color_border)] bg-gray-50 p-4">
+            <div className="mt-2 space-y-4 rounded border border-[var(--vocs-color_border)] bg-gray-50 p-4 dark:bg-gray-800 dark:border-gray-700">
                <div>
-                <label htmlFor="executionMhz" className="mb-1 block font-medium text-sm">Execution MHz</label>
-                <input
-                  id="executionMhz"
+                <label htmlFor="executionMhz" className="mb-1 block font-medium text-sm dark:text-gray-300">Execution MHz</label>
+                <input                   id="executionMhz"
                   value={executionMhz}
                   onChange={(e) => handleDecimalInput(e, setExecutionMhz)}
-                  className="w-full rounded border border-[var(--vocs-color_border)] px-3 py-2"
+                  className="w-full rounded border border-[var(--vocs-color_border)] px-3 py-2 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 />
               </div>
               <div>
-                <label htmlFor="provingMhz" className="mb-1 block font-medium text-sm">Proving MHz</label>
-                <input
-                  id="provingMhz"
+                <label htmlFor="provingMhz" className="mb-1 block font-medium text-sm dark:text-gray-300">Proving MHz</label>
+                <input                   id="provingMhz"
                   value={provingMhz}
                   onChange={(e) => handleDecimalInput(e, setProvingMhz)}
-                  className="w-full rounded border border-[var(--vocs-color_border)] px-3 py-2"
+                  className="w-full rounded border border-[var(--vocs-color_border)] px-3 py-2 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 />
               </div>
             </div>
@@ -122,18 +116,18 @@ export const TimeCalculator = () => {
 
         {/* Estimated Times */}
         <div className="pt-4">
-            <h4 className="mb-2 font-medium">Estimations</h4>
-            <div className="rounded border border-[var(--vocs-color_border)] bg-gray-50 p-4">
+            <h4 className="mb-2 font-medium dark:text-gray-300">Estimations</h4>
+            <div className="rounded border border-[var(--vocs-color_border)] bg-gray-50 p-4 dark:bg-gray-800 dark:border-gray-700">
                 <dl className="space-y-2 text-sm">
                 <div className="flex items-center justify-between">
-                    <dt>Estimated Execution Time:</dt>
-                    <dd className="font-mono">
+                    <dt className="dark:text-gray-300">Estimated Execution Time:</dt>
+                    <dd className="font-mono dark:text-white">
                     {estimatedExecutionTime.toFixed(4)} seconds
                     </dd>
                 </div>
                 <div className="flex items-center justify-between">
-                    <dt>Estimated Proving Time:</dt>
-                    <dd className="font-mono">
+                    <dt className="dark:text-gray-300">Estimated Proving Time:</dt>
+                    <dd className="font-mono dark:text-white">
                     {estimatedProvingTime.toFixed(4)} seconds
                     </dd>
                 </div>

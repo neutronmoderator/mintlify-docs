@@ -1,8 +1,10 @@
 ---
 title: Build a Program
 description: Learn how to build a guest program
-icon: hammer
+icon: wrench
 ---
+
+## Overview
 
 <Tip>
 This page covers the [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foundry-template/) as a quick start.
@@ -187,9 +189,9 @@ function set(uint256 x, bytes calldata seal) public {
 - [Journal](https://dev.risczero.com/terminology#journal)
   - The journal refers to the public outputs of the program. Similar to the image ID, the journal ensures proof consistency by verifying that the journal in the [receipt claim](https://dev.risczero.com/terminology#receipt-claim) (the seal cryptographically attests to the receipt claim) matches the expected journal.
 
-:::note[Summary]
+<Note>
 The `EvenNumber.sol` smart contract has one main function: `set`. This function will update the state `number` _if and only if_ a valid ZK proof is verified from the correct zkVM program (identified via the image ID).
-:::
+</Note>
 
 ### [`apps/src/main.rs`](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/apps/src/main.rs)
 

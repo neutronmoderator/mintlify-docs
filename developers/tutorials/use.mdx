@@ -1,19 +1,16 @@
 ---
 title: Use a Proof
-description: After receiving the Boundless proof, you are ready to use it in your app to access verifiable compute directly.
+description: After receiving a Boundless proof, you are ready to consume it in your app to access verifiable compute.
+icon: user-plus
 ---
 
-# Use a Proof
-
-> Prerequisite Reading: [Request a Proof](/developers/tutorials/request), [Proof Lifecycle](/developers/proof-lifecycle)
+## Overview
 
 After [requesting a proof](/developers/tutorials/request), the next step is to use that proof in the application's workflow.
 The exact way proofs are used will vary depending on the architecture of the application.
 However, there is a common pattern; once a proof is received from the Boundless market, the next step will be to verify that proof onchain.
 
-<a href="/use-a-proof.png" class="lightgallery">
-  <img src="/use-a-proof.png" alt="Use a Proof" />
-</a>
+![Use a Proof](/images/use-a-proof.png)
 
 It is recommended that the application contract calls the [RiscZeroVerifierRouter](https://dev.risczero.com/api/blockchain-integration/contracts/verifier) for verification.
 This allows handling many types of proofs, and proof system versions seamlessly.
@@ -166,4 +163,6 @@ The `verify` call will revert if the proof is invalid, otherwise the number vari
 
 Each application will have its own requirements and flows, but this is a common pattern and a good starting point for building your own application.
 
-> Relevant links: [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foundry-template/tree/main), [Journal](https://dev.risczero.com/terminology#journal), [Seal](https://dev.risczero.com/terminology#seal)
+<Check>
+Relevant links: [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foundry-template/tree/main), [Journal](https://dev.risczero.com/terminology#journal), [Seal](https://dev.risczero.com/terminology#seal)
+</Check>

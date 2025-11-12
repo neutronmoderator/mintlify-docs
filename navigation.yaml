@@ -2,16 +2,15 @@ tabs:
   - tab: "Build"
     groups:
       - group: "Introduction"
-        icon: "school"
         pages:
           - "developers/what"
           - "developers/why"
+          - "developers/proof-lifecycle"
 
       - group: "Getting started"
         expanded: false
         pages:
           - "developers/quick-start"
-          - "developers/proof-lifecycle"
 
       - group: "Core Concepts"
         pages:

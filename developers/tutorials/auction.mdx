@@ -1,12 +1,16 @@
-import { TimeCalculator } from '/snippets/time-calculator.jsx';
+---
+title: Set up the Auction
+description: Configuring auction parameters for a proof request
+icon: gavel
+---
 
-# Set up the Auction
+import { TimeCalculator } from '/snippets/time-calculator.jsx';
 
 ## Overview
 
-:::tip
+<Info>
 The Boundless monorepo has a template [request.yaml](https://github.com/boundless-xyz/boundless/blob/main/request.yaml) which specifies all possible request configuration variables. For testing, developers can use the [Boundless CLI to request a proof](/developers/tooling/cli#requesting-a-proof-via-the-boundless-cli).
-:::
+</Info>
 
 ### Why is the auction important?
 
@@ -80,7 +84,7 @@ offer:
 
 Once the request is submitted to the market, the auction will follow the auction parameters as specified in this diagram:
 
-![Offer Parameter Diagram](/request_diagram.png)
+![Offer Parameter Diagram](/images/request_diagram.png)
 
 - Once the request is processed, and the order is created, the order is surfaced to the market and the auction begins.
 - For 85 seconds (specified by `rampUpStart`), the order will be at the minimum price (`minPrice`). This time allows for provers to see the request, and run checks on the request (known as a preflight)[^1]. During this 85 second period, provers can lock the order at the minimum price (remember that, at any time, any prover locking the order successfully will close the auction).

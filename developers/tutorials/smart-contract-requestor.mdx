@@ -1,9 +1,8 @@
 ---
 title: Smart Contract Requestors
 description: Smart Contract Requestors enable permissionless proof request submission by 3rd parties that are authorized for payment by a smart contract.
+icon: user-robot
 ---
-
-# Smart Contract Requestors
 
 ## Overview
 
@@ -158,7 +157,7 @@ In this example we expect the input of the program to be the current day since e
 
 Our Smart Contract Requestor expects the full abi encoded ProofRequest to be provided as the signature.
 
-```solidity [SmartContractRequestor.sol]
+```solidity SmartContractRequestor.sol
 function isValidSignature(bytes32 requestHash, bytes memory signature) external view returns (bytes4) {
     // This smart contract client expects the full abi encoded ProofRequest to be provided as the signature.
     ProofRequest memory request = abi.decode(signature, (ProofRequest));
@@ -190,13 +189,13 @@ When the request is locked or fulfilled, Boundless Market will call `isValidSign
 
 First, we decode the request from the signature.
 
-```solidity [SmartContractRequestor.sol]
+```solidity SmartContractRequestor.sol
 ProofRequest memory request = abi.decode(signature, (ProofRequest));
 ```
 
 Recall that the Request ID represents the day of work being processed, so first we check that the request id is within the expected range for days that we are willing to pay for.
 
-```solidity [SmartContractRequestor.sol]
+```solidity SmartContractRequestor.sol
 (, uint32 daysSinceEpoch) = request.id.clientAndIndex();
 if (daysSinceEpoch < START_DAY_SINCE_EPOCH || daysSinceEpoch > END_DAY_SINCE_EPOCH) {
     return 0xffffffff;
@@ -205,7 +204,7 @@ if (daysSinceEpoch < START_DAY_SINCE_EPOCH || daysSinceEpoch > END_DAY_SINCE_EPO
 
 Next we check that the image id is as expected, ensuring that the request specifies the correct guest program.
 
-```solidity [SmartContractRequestor.sol]
+```solidity SmartContractRequestor.sol
 // Validate that the request provided is as expected.
 // For this example, we check the image id is as expected, and that the predicate restricts
 // the output to match the day specified in the id.
@@ -216,7 +215,7 @@ if (request.requirements.imageId != ECHO_ID) {
 
 Next, we validate the predicate type and data are correct, ensuring that the request was executed with the correct input and resulted in the correct output.
 
-```solidity [SmartContractRequestor.sol]
+```solidity SmartContractRequestor.sol
 // Validate the predicate type and data are correct. This ensures that the request was executed with
 // the correct input and resulted in the correct output. In this case it ensures that the input
 // to the request was the correct day since epoch that corresponds to the request id.
@@ -231,7 +230,7 @@ if (bytes32(request.requirements.predicate.data) != expectedPredicate) {
 
 Finally, we validate that the EIP-712 hash of the request provided in the signature matches the hash that was provided by BoundlessMarket. This ensures that Boundless is processing the same request that we have validated.
 
-```solidity [SmartContractRequestor.sol]
+```solidity SmartContractRequestor.sol
 // Validate that the EIP-712 hash of the request provided in the signature matches the hash that was
 // provided by BoundlessMarket. This ensures that Boundless is processing the same request that we have
 // validated.
@@ -244,4 +243,6 @@ return 0xffffffff;
 
 If all of these checks pass, the request is valid and the smart contract requestor will pay for the request.
 
-> Relevant links: [Smart Contract Requestor Example](https://github.com/boundless-xyz/boundless/tree/main/examples/smart-contract-requestor), [ERC-1271](https://eips.ethereum.org/EIPS/eip-1271)
+<Check>
+Relevant links: [Smart Contract Requestor Example](https://github.com/boundless-xyz/boundless/tree/main/examples/smart-contract-requestor), [ERC-1271](https://eips.ethereum.org/EIPS/eip-1271)
+</Check>
