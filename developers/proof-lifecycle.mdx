@@ -163,7 +163,7 @@ The requestor can use this Merkle inclusion proof as an effective representation
 
 When the prover fulfills their request, the requestor (the app developer) will receive their proof.
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::time::Duration;
 # use boundless_market::{Client, storage::storage_provider_from_env};
@@ -186,7 +186,7 @@ let fulfillment = boundless_client
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 The journal is the public output of the program, and the seal is the cryptographic proof. Since Boundless uses aggregated proofs, the seal will be a Merkle inclusion proof, but verification works the same as for Groth16: the application contract sends the seal to the verifier contract. We recommend using the [RiscZeroVerifierRouter](https://dev.risczero.com/api/blockchain-integration/contracts/verifier), which will allow your application to seamlessly use both Groth16 and Merkle inclusion proofs. Below is an example from the Boundless Foundry Template:
 

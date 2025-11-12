@@ -27,7 +27,7 @@ While merkle inclusion proofs are efficient for on-chain verification, there may
 
 Boundless supports requesting a raw Groth16 proof instead of a merkle inclusion proof. You can specify this in your proof request by setting the `proof_type` to `ProofType::Groth16`:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy_primitives::utils::parse_ether;
 # use boundless_market::{Client, request_builder::OfferParams};
@@ -51,7 +51,7 @@ let request = client.new_request()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ## Considerations
 
@@ -74,7 +74,7 @@ Composing a proof requires us to verify a previously generated Groth16 proof wit
 
 
 In the composition example, we first request a raw Groth16 proof from the Boundless Market using the `ECHO` guest program.
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy_primitives::utils::parse_ether;
 # use boundless_market::{Client, request_builder::OfferParams};
@@ -98,11 +98,11 @@ let request = client.new_request()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 We then provide the Groth16 proof as input to the `IDENTITY` zkVM guest program, and verify the proof.
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 use risc0_zkvm::guest::env;
 use risc0_zkvm::{Digest, Receipt};
@@ -114,4 +114,4 @@ fn main() {
     ....
 }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}

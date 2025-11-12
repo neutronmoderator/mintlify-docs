@@ -62,7 +62,7 @@ In this example, we use the Request ID to represent "days since epoch". Our zkVM
 
 First, we construct the Request ID. We use the index of the Request ID to represent each day since the unix epoch, ensuring that we will only ever pay for one request per day. Note we also set a flag to indicate that this request's signature should be validated using ERC-1271's `isValidSignature` function, and not a regular ECDSA recovery:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::contracts::RequestId;
 # use alloy::primitives::Address;
@@ -77,7 +77,7 @@ let days_since_epoch = (now / (24 * 60 * 60)) as u32;
 let request_id = RequestId::new(smart_contract_requestor_address, days_since_epoch)
     .set_smart_contract_signed_flag();
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Next, we want to ensure that for the specific day that the request is submitted, the proof was generated using the correct input. In our case, we want the input to be the current day since epoch, ensuring that that day's work was paid for.
 
@@ -86,7 +86,7 @@ Here we make use of a powerful pattern, where we have ensured that our guest pro
 In this example we expect the input of the program to be the current day since epoch, so we validate that by creating a digest match predicate with days_since_epoch as the expected journal.
 
 First we execute the guest program locally with our expected input, to generate the expected journal.
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use anyhow::{Result, Context};
 # use boundless_market::Client;
@@ -115,10 +115,10 @@ let journal = session_info.journal;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Then we create our proof request, setting a `Requirement` that the journal should match the expected journal.
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::{Client, contracts::RequestId, request_builder::OfferParams};
 # use alloy::primitives::utils::parse_ether;
@@ -147,7 +147,7 @@ let request = client.build_request(request).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 When combined with the nonce structure of the request id, this ensures that for each daily batch of work, the correct input was used.
 
@@ -168,7 +168,7 @@ function isValidSignature(bytes32 requestHash, bytes memory signature) external 
 ```
 So we encode the signature that the Smart Contract Requestor requires to validate the request is constructed correctly. Now we submit the request to the market, and wait for it to be fulfilled.
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::{Client, contracts::ProofRequest};
 # use alloy::primitives::Bytes;
@@ -184,7 +184,7 @@ tracing::info!("Request {:x} submitted", request_id);
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 When the request is locked or fulfilled, Boundless Market will call `isValidSignature` on the Smart Contract Requestor with the request hash and the signature. Here we walk through the logic of our example contract:
 

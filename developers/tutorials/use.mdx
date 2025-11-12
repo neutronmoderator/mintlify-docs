@@ -31,7 +31,7 @@ The [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foun
 
 Concretely, receiving the proof ([see code](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/apps/src/main.rs)) from the Boundless Market returns a journal and a seal:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::time::Duration;
 # use alloy_primitives::U256;
@@ -47,12 +47,12 @@ let fulfillment = boundless_client
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Using Alloys [sol! Macro](https://alloy.rs/contract-interactions/using-sol%21/), the rust types/bindings are generated for the [`EvenNumber.sol`](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/contracts/src/EvenNumber.sol) contract.
 To create an `EvenNumber` contract instance:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy_primitives::Address;
 # use anyhow::Result;
@@ -76,11 +76,11 @@ let even_number = IEvenNumber::new(
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 To call the `set` function on the `EvenNumber` contract, a “set number” transaction is created:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy_primitives::{Address, Bytes, U256};
 # use anyhow::Result;
@@ -108,11 +108,11 @@ let set_number = even_number
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Finally, this transaction is broadcasted with:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::time::Duration;
 # use alloy_primitives::{Address, Bytes, U256};
@@ -148,7 +148,7 @@ tracing::info!("Tx {:?} confirmed", tx_hash);
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Definition of the `set` function on [`EvenNumber.sol`](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/contracts/src/EvenNumber.sol):
 

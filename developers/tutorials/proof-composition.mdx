@@ -37,7 +37,7 @@ The [Proof Composition example](https://github.com/boundless-xyz/boundless/tree/
 
 First, we request a raw Groth16 proof from the Echo guest program:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::contracts::{Predicate, Requirements};
 # use risc0_zkvm::sha::Digestible;
@@ -49,11 +49,11 @@ if groth16 {
     requirements = requirements.with_groth16_proof();
 }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 We then use this proof as input to the Identity guest program:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::{providers::Provider, network::Ethereum};
 # use anyhow::Context;
@@ -93,11 +93,11 @@ let (identity_journal, identity_seal) =
 # anyhow::Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Finally, we can use the composed proof to interact with a smart contract:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::{client::Client, contracts::ProofRequest};
 # use risc0_zkvm::sha::{Digest, Digestible};
@@ -139,6 +139,6 @@ let tx_hash = pending_tx
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 > Relevant links: [Proof Composition Example](https://github.com/boundless-xyz/boundless/tree/main/examples/composition)

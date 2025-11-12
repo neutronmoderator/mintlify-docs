@@ -61,7 +61,7 @@ export PINATA_JWT="abcdef..."
 
 ### 2. Build the Boundless Client
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::signers::local::PrivateKeySigner;
 # use boundless_market::{Client, storage::storage_provider_from_env};
@@ -87,11 +87,11 @@ let client = Client::builder()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### 3. Create and Submit a Proof Request
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use anyhow::Result;
 # use boundless_market::{Client};
@@ -110,13 +110,13 @@ let (request_id, expires_at) = client.submit_onchain(request).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### 4. Retrieve the Proof
 
 Once submitted, you can keep track of the request using:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::time::Duration;
 # use anyhow::Result;
@@ -139,7 +139,7 @@ tracing::info!("Request {:x} fulfilled", request_id);
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 This will store the `journal` and `seal` from the Boundless market, together they represent the public outputs of your guest and the proof itself, respectively. You can [use a proof in your application](/developers/tutorials/use) to access the power of verifiable compute using Boundless.
 
@@ -159,7 +159,7 @@ export PINATA_JWT="abcdef"...
 
 then when you use `.with_storage_provider()`:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::signers::local::PrivateKeySigner;
 # use boundless_market::{Client, storage::storage_provider_from_env};
@@ -185,7 +185,7 @@ let client = Client::builder()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 *IPFS* is set automatically to the storage provider, and your JWT will be used to upload programs/inputs via Pinata's gateway.
 
@@ -213,7 +213,7 @@ Provers must be able to access your guest program via a publicly accessible URL;
 
 #### Manually
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::{Client, storage::storage_provider_from_env};
 # async fn upload_program(program: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
@@ -225,11 +225,11 @@ let program_url = client.upload_program(program).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 After which, you'd create a request with:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::Client;
 # async fn create_request_with_urls(
@@ -242,7 +242,7 @@ let request = client.new_request()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 If you already have the `program_url`, you do not need to upload the program again; you can simply use `with_program_url` with a hard-coded URL.
 
@@ -250,7 +250,7 @@ If you already have the `program_url`, you do not need to upload the program aga
 
 If you are working in a monorepo (i.e. your zkVM host/guest is in the same repo), you can take advantage of [risc0-build](https://docs.rs/risc0-build/latest/risc0_build/) which automatically builds and exposes the ELF for the guest. The counter example uses this method:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use anyhow::Result;
 # use boundless_market::{Client};
@@ -269,7 +269,7 @@ let request = client.new_request()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### Inputs
 
@@ -282,7 +282,7 @@ Inputs can be provides as a public URL, or "inline" by including them directly i
 
 Program inputs are uploaded to the same storage provider. This can be done manually like so:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::{Client, storage::storage_provider_from_env};
 # async fn upload_input(input_bytes: Vec<u8>) -> Result<(), Box<dyn std::error::Error>> {
@@ -294,11 +294,11 @@ let input_url = client.upload_input(&input_bytes).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 or if we look back at the counter example, we can see that the inputs are included directly into the request builder:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use anyhow::Result;
 # use boundless_market::{Client};
@@ -316,7 +316,7 @@ let (request_id, expires_at) = client.submit_onchain(request).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 In this example, inputs are included inline if they are small (e.g. less than 1 kB) or uploaded to a public URL first if they are large.
 
@@ -331,7 +331,7 @@ The Boundless protocol allows you to submit requests both onchain and offchain.
 
 To submit a request onchain, we use:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use anyhow::Result;
 # use boundless_market::{Client};
@@ -349,7 +349,7 @@ let (request_id, expires_at) = client.submit_onchain(request).await?; // [!code 
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 #### Offchain
 
@@ -359,7 +359,7 @@ When using offchain requests, you are required to deposit funds into the Boundle
 
 To submit a request offchain, we use:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use anyhow::Result;
 # use boundless_market::{Client};
@@ -377,7 +377,7 @@ let (request_id, expires_at) = client.submit_offchain(request).await?; // [!code
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### Offer
 
@@ -406,7 +406,7 @@ There are two ways to configure auction parameters:
 
 Use `with_offer` when you want to override specific pricing parameters for an individual request:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust showLineNumbers
 # use anyhow::Result;
 # use alloy_primitives::utils::parse_ether;
@@ -439,13 +439,13 @@ let (request_id, expires_at) = client.submit_onchain(request).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 #### Client-Level Configuration with `config_offer_layer`
 
 Use `config_offer_layer` when you want to adjust how the SDK calculates auction parameters based on cycle count and gas prices. This is particularly useful when you want to use cycle-based pricing:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use anyhow::Result;
 # use alloy::signers::local::PrivateKeySigner;
@@ -483,6 +483,6 @@ let client = Client::builder()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 With this configuration, the SDK will execute the request to estimate cycles and calculate appropriate prices.

@@ -41,7 +41,7 @@ The [Counter with callback](https://github.com/boundless-xyz/boundless/tree/main
 
 When creating the proof request, the requestor specifies the callback contract address and a gas limit:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::primitives::address;
 # use alloy_primitives::utils::parse_ether;
@@ -71,7 +71,7 @@ let (request_id, expires_at) = client.submit_onchain(request).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Our Counter contract implements the `handleProof` function, which checks if we've already seen this proof, and if not, increments a counter and emits an event:
 
@@ -99,7 +99,7 @@ function _handleProof(bytes32 imageId, bytes calldata journal, bytes calldata se
 
 Once the proof is fulfilled, our example checks the counter contract and confirms that the value was incremented by the callback:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::time::Duration;
 # use alloy::primitives::address;
@@ -127,6 +127,6 @@ let count = counter
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 > Relevant links: [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foundry-template/tree/main), [Journal](https://dev.risczero.com/terminology#journal), [Seal](https://dev.risczero.com/terminology#seal)

@@ -40,7 +40,7 @@ let client = Client::builder()
 
 ### 2. Upload Program and Input
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::{Client, storage::storage_provider_from_env};
 # use alloy::signers::local::LocalSigner;
@@ -57,11 +57,11 @@ let input_url = client.upload_input(&[0x41, 0x42, 0x43]).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### 3. Submit Proof Request
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use boundless_market::Client;
 # use boundless_market::contracts::ProofRequest;
@@ -71,11 +71,11 @@ let (request_id, expires_at) = client.submit_request_onchain(&request).await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### 4. Await Fulfillment
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::time::Duration;
 # use boundless_market::Client;
@@ -90,11 +90,11 @@ let fulfillment = client
 # }
 
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### 5. Fetch Proof Results
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::primitives::U256;
 # use boundless_market::Client;
@@ -108,7 +108,7 @@ let (journal, receipt) = client.fetch_set_inclusion_receipt(request_id, [0u8; 32
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ## SDK Modules
 

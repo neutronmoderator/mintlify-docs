@@ -14,7 +14,7 @@ _This code is taken from the erc20-counter example, which you can find [here]._
 
 The sol! macro parses Solidity syntax to generate Rust types; this is used to call the `balanceOf` function, within the [guest program], using `balanceOfCall`:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::primitives::{Address, U256};
 # use alloy::sol_types::SolValue;
@@ -53,7 +53,7 @@ let journal = Journal {
 env::commit_slice(&journal.abi_encode());
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ## Proving smart contract execution within the zkVM
 
@@ -61,7 +61,7 @@ The zkVM guest has no network connection, and there is no way to call an RPC pro
 
 Steel’s key innovation is the use of [revm] for simulation of an _EVM environment_ within the guest program. This EVM environment has the necessary state populated from RPC calls, and verified with Merkle storage proofs, to carry out verifiable execution of view calls. In the [host program], the [preflight call] constructs the EVM environment, `evm_env` which is passed through as input to the guest program:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::providers::ProviderBuilder;
 # use alloy::primitives::Address;
@@ -87,7 +87,7 @@ let evm_input = env.into_input().await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 The `preflight` step calls the RPC provider for the necessary state and for the Merkle storage proofs via `eth_getProof` ([EIP-1186]). These Merkle proofs are given to the guest which verifies them to prove that the RPC data is valid, without having to run a full node and without trusting the host or RPC provider.
 

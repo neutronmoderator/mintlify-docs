@@ -10,7 +10,7 @@ When you submit a proof request to Boundless, you can track its status programma
 
 Here's how to wait for a request to be fulfilled:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust no_run
 # use boundless_market::{Client, StorageProviderConfig};
 # use boundless_market::request_builder::OfferParams;
@@ -47,7 +47,7 @@ tracing::info!("Request {:x} fulfilled", request_id);
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### How It Works
 
@@ -73,7 +73,7 @@ Boundless tracks these request states:
 
 When tracking requests, handle these potential outcomes:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust no_run
 # use boundless_market::client::ClientError;
 # use boundless_market::contracts::{boundless_market::MarketError, FulfillmentData};
@@ -105,13 +105,13 @@ match client.wait_for_request_fulfillment(request_id, check_interval, expires_at
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### Advanced Tracking
 
 For more control, you can manually check request status:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust no_run
 # use boundless_market::contracts::RequestStatus;
 # use boundless_market::Client;
@@ -146,7 +146,7 @@ match status {
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ## Boundless Explorer
 

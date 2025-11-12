@@ -4,9 +4,6 @@ description: Learn how to build a guest program
 icon: hammer
 ---
 
-import { StripRustCodeComments } from "/snippets/strip-rust-code-comments.jsx"
-
-
 <Tip>
 This page covers the [Boundless Foundry Template](https://github.com/boundless-xyz/boundless-foundry-template/) as a quick start.
 </Tip>
@@ -57,7 +54,7 @@ The entire program is only \~20 lines, so let's run through it:
 
 ### [`is-even`](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/contracts/src/EvenNumber.sol)
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 use std::io::Read;
 
@@ -82,10 +79,10 @@ fn main() {
     env::commit_slice(number.abi_encode().as_slice());
 }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 First, the guest receive inputs from the host program, and then these input bytes are decoded and parsed:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::io::Read;
 # use alloy_primitives::U256;
@@ -102,11 +99,11 @@ fn main() {
     ....
 }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 To check if the number is even:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::io::Read;
 # use alloy_primitives::U256;
@@ -124,11 +121,11 @@ fn main() {
     ....
 }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 Finally, if the number is even, the assert will pass and the number can be committed to the [journal](https://dev.risczero.com/terminology#journal).
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use std::io::Read;
 # use alloy_primitives::U256;
@@ -146,7 +143,7 @@ fn main() {
     ....
 }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 ### [`EvenNumber.sol`](https://github.com/boundless-xyz/boundless-foundry-template/blob/main/contracts/src/EvenNumber.sol)
 

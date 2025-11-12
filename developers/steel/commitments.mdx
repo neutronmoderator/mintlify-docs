@@ -8,7 +8,7 @@ Concretely, a Steel commitment consists of a block identifier, and the block has
 
 Steel uses [revm] to generate an EVM execution environment, `EvmEnv` within the guest. When you create the `EvmEnv`, you can specify a block (the default is the latest block).
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::providers::ProviderBuilder;
 # use risc0_steel::{ethereum::{EthEvmEnv, ETH_SEPOLIA_CHAIN_SPEC}};
@@ -25,11 +25,11 @@ let mut env = EthEvmEnv::builder()
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 This block is used for RPC queries (i.e. `getStorageAt`) during the `preflight` call. Once the preflighting is done, `into_input` is called:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::providers::ProviderBuilder;
 # use risc0_steel::{ethereum::{EthEvmEnv, ETH_SEPOLIA_CHAIN_SPEC}};
@@ -46,7 +46,7 @@ let evm_input = env.into_input().await?;
 # Ok(())
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 During this `into_input` step, the preflight data is packed into a form that can be read and validated in the guest.
 
@@ -56,7 +56,7 @@ Within the guest, calling `into_env` checks that all Merkle tries are consistent
 
 _This blockhash is Steel's trust anchor; it needs to be recomputed within the guest to validate the integrity of the RPC data._
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::primitives::Address;
 # use risc0_steel::{ethereum::{EthEvmInput, ETH_SEPOLIA_CHAIN_SPEC}};
@@ -71,11 +71,11 @@ let account: Address = env::read();
 let env = input.into_env(&ETH_SEPOLIA_CHAIN_SPEC);
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 For the Steel commitment, it is this block hash, computed within the guest, that is committed to the journal:
 
-<StripRustCodeComments>
+{/* <StripRustCodeComments> */}
 ```rust
 # use alloy::primitives::Address;
 # use alloy::sol_types::SolValue;
@@ -97,7 +97,7 @@ let journal = Journal {
 env::commit_slice(&journal.abi_encode());
 # }
 ```
-</StripRustCodeComments>
+{/* </StripRustCodeComments> */}
 
 This block hash has to be compared onchain, alongside the verification of the proof, to validate that the Steel proof is correct and to verify the integrity of RPC data.
 
