@@ -1,10 +1,12 @@
-# Monitoring
+---
+title: Monitoring
+description: Some tips on monitoring your prover.
+icon: monitor-waveform
+---
 
-## Getting Support
-
-:::tip[Need Help?]
-If you encounter issues that you cannot resolve through monitoring and logs, join our [Discord community](https://discord.gg/aXRuD6spez) and claim the prover role via [Guild.xyz](https://guild.xyz/boundless-xyz) to get access to the *#prover-support-forum* channel. The Boundless team and experienced provers are there to help troubleshoot issues and share best practices.
-:::
+<Tip>
+For technical support, please post your questions on the [Boundless Discussions Forum](https://github.com/boundless-xyz/boundless/discussions).
+</Tip>
 
 ## Grafana
 
@@ -31,11 +33,11 @@ It is strongly recommended to keep your market balance above the brokers configu
 
 ### Broker Logs
 
-The broker logs are the very helpful for monitoring broker interactions with the market. It is designed with the intention that `DEBUG` / `INFO` / `WARN` log should not require manual intervention, but anything logged at an `ERROR` level should be a cause of concern.
-
-:::warning
+<Warning>
 Unrecoverable errors may cause the broker process to exit. Make sure to have a restart policy on the container. As the software matures, more errors should become recoverable.
-:::
+</Warning>
+
+The broker logs are the very helpful for monitoring broker interactions with the market. It is designed with the intention that `DEBUG` / `INFO` / `WARN` log should not require manual intervention, but anything logged at an `ERROR` level should be a cause of concern.
 
 To see a live stream of the broker logs:
 

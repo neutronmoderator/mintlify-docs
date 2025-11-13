@@ -1,4 +1,8 @@
-# Quick Start (Prove)
+---
+title: Prover Quick Start
+description: Run a prover on Boundless.
+icon: fast-forward
+---
 
 ## Requirements
 
@@ -14,9 +18,9 @@ A recommended minimum configuration for proving performance:
 
 ## Clone the Boundless Repo
 
-:::tip[Use Ubuntu]
+<Tip>
 We recommend using Ubuntu 24.04 for your proving node.
-:::
+</Tip>
 
 To get started, first clone the Boundless monorepo on your proving machine, and switch to the [latest release](https://github.com/boundless-xyz/boundless/releases):
 
@@ -28,9 +32,9 @@ git checkout release-1.1
 
 ## Install Dependencies
 
-:::tip[Tip]
+<Tip>
 This stage can be skipped if you already have docker and docker-nvidia installed.
-:::
+</Tip>
 
 To run a Boundless prover, you'll need the following dependencies:
 
@@ -54,15 +58,15 @@ export RPC_URL=""
 
 This is the private key to the wallet which will represent your prover on the market; make sure it has funds. For the RPC url, we recommend using either [Alchemy](https://alchemy.com) or [Quicknode](https://www.quicknode.com/) paid RPC endpoints.
 
-:::warning
+<Warning>
 Note that the free RPC plans from either provider *will not* work for longer than a few hours, and therefore this may cause a prover to get slashed, if free RPC limits are hit, after some orders are locked.
-:::
+</Warning>
 
 ## Running a Test Proof
 
-:::tip[See all just commands]
+<Tip>
 We make use of [just](https://github.com/casey/just?tab=readme-ov-file#just) to make running complex commands easier. To see available `just` commands for Boundless, run `just` within the root `boundless/` folder.
-:::
+</Tip>
 
 Boundless is comprised of two major components:
 1. *Bento* is the local proving infrastructure. Bento will take requests, prove them and return the result.
@@ -93,11 +97,11 @@ RUST_LOG=info bento_cli -c 32
 
 If everything works, you should see something like the following:
 
-![Bento CLI Test Proof Success](/test-proof.png)
+![Bento CLI Test Proof Success](/images/test-proof.png)
 
 ## Running the Prover Setup Wizard
 
-Once Bento is running successfully, it is time to configure the [broker](/provers/proving-stack#what-is-the-broker). The [Boundless CLI](/developers/tooling/cli) provides an interactive setup wizard to help configure the [broker.toml](/provers/broker#settings-in-brokertoml) and [compose.yml](https://github.com/boundless-xyz/boundless/blob/main/compose.yml) files.
+Once Bento is running successfully, it is time to configure the [broker](/provers/proving-stack#what-is-the-broker). The [Boundless CLI](/developers/tooling/cli) provides an interactive setup wizard to help configure the [broker.toml](/provers/broker#settings-in-brokertoml) and compose.yml(https://github.com/boundless-xyz/boundless/blob/main/compose.yml) files.
 
 ### Install the Boundless CLI
 
@@ -109,7 +113,7 @@ cargo install --locked --git https://github.com/boundless-xyz/boundless boundles
 
 Once installed, run `boundless` to check it has been installed properly:
 
-![Boundless CLI Homescreen](/boundless_cli_main.png)
+![Boundless CLI Homescreen](/images/boundless_cli_main.png)
 
 ### Run the Prover Setup Wizard
 
@@ -121,25 +125,25 @@ boundless prover generate-config
 
 and an interactive prompt will appear:
 
-![Boundless CLI Prover Setup Wizard](/prover-setup-wizard.png)
+![Boundless CLI Prover Setup Wizard](/images/prover-setup-wizard.png)
 
 Answer the questions as required, based on your setup and requirements. Once finished, the broker.toml and compose.yml files will be created/edited.
 
 ## Running the Broker
 
-:::tip[Need technical support?]
+<Tip>
 For technical support, please post your questions on the [Boundless Discussions Forum](https://github.com/boundless-xyz/boundless/discussions).
-:::
+</Tip>
 
 We have checked that bento successfully generated a test proof. We are now ready to run the broker so that we can start proving on Boundless.
 
 ### Deposit Collateral
 
-:::warning
+<Warning>
 *$ZKC* is only on Ethereum mainnet.
 
 Therefore, to use *$ZKC* as proving collateral, provers have to first [bridge *$ZKC*](/zkc/collateral) from Ethereum mainnet to Base mainnet.
-:::
+</Warning>
 
 With the [environment variables](/provers/quick-start#setup-environment-variables) set, you can now deposit *$ZKC* tokens as collateral to your account balance:
 
@@ -220,7 +224,7 @@ The `compose.yml` file defines all services within Bento. The Boundless repo inc
 
 Under the `exec_agent` service in `compose.yml`, the default configuration utilises a single GPU:
 
-```yml [compose.yml]
+```yml compose.yml
 deploy:
   resources:
     reservations:
@@ -244,7 +248,7 @@ GPU 1: NVIDIA GeForce RTX 3090 (UUID: GPU-fedcb987-6543-2109-8765-abcdef123456)
 
 We can see that GPU 1 is listed with the device ID of `1`. To add this GPU, uncomment `gpu_prove_agent1` from `compose.yml`:
 
-```yml [compose.yml]
+```yml compose.yml
 gpu_prove_agent1: # [!code hl]
   <<: *agent-common
   runtime: nvidia
@@ -261,9 +265,9 @@ For 3 or more GPUs, add the corresponding `gpu_prove_agentX` where `X` matches t
 
 ### Segment Size
 
-:::note[Segment Sizes + Security]
+<Note>
 Larger `SEGMENT_SIZE` values also impact the proving systems conjectured security bits slightly (see [RISC Zero - Cryptographic Security Model](https://dev.risczero.com/api/security-model#how-secure-are-the-stark-provers)).
-:::
+</Note>
 
 `SEGMENT_SIZE` is specified in powers-of-two (po2). Larger segment sizes are preferable for performance, but require more GPU VRAM. To pick the right `SEGMENT_SIZE` for your GPU VRAM, see [the performance optimization page](/provers/performance-optimization#finding-the-maximum-segment_size-for-gpu-vram).
 
@@ -273,7 +277,7 @@ The recommended way to change the segment size is to set the environment variabl
 
 You can also configure the `SEGMENT_SIZE` in `compose.yml` under the `exec_agent` service; it defaults to 21:
 
-```yml [compose.yml]
+```yml compose.yml
 exec_agent:
   <<: *agent-common
   runtime: nvidia
@@ -289,9 +293,9 @@ exec_agent:
 
 ## What next?
 
-:::tip[Need technical support?]
+<Tip>
 For technical support, please post your questions on the [Boundless Discussions Forum](https://github.com/boundless-xyz/boundless/discussions).
-:::
+</Tip>
 
 Next, you'll need to tune your Broker's settings, please see [Broker Optimization](/provers/broker#broker-optimization).
 

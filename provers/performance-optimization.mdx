@@ -1,8 +1,12 @@
-# Performance Optimization
+---
+title: Performance Optimization
+description: Some tips on optimizing your prover setup.
+icon: magnifying-glass-chart
+---
 
-:::tip[Tip]
+<Info>
 Bento performance is tightly coupled to the specific environment, equipment, and compute provider's requirements. Recommendations in this guide should be used as reference rather than a concrete recommendation on configuration.
-:::
+</Info>
 
 ## Recommended Tools
 
@@ -110,9 +114,9 @@ Effective Hz:
 
 In the final table, the effective Hz is the primary metric for consideration. This represents the (number of cycles) / (elapsed wallclock time). In the example above, the effective Hz is roughly 400kHz.
 
-:::tip[Note]
+<Note>
 In the `job_status.sh` output above, the Hz is only accurate if the job has completed with no error conditions. Failed and in-progress jobs will have an inflated Hz value.
-:::
+</Note>
 
 ## Finding the Maximum `SEGMENT_SIZE` for GPU VRAM
 
@@ -137,9 +141,9 @@ The key tuning parameter of continuations is `SEGMENT_SIZE` in the `.env.broker`
 
 ### Testing the GPU has enough memory to handle the Segment Size
 
-:::tip[Note]
+<Check>
 Boundless should be restarted upon changing the `SEGMENT_SIZE` value, and verify that [Broker](/provers/broker#stopping-the-broker-service) is not running.
-:::
+</Check>
 
 Once you have selected a `MAXIMUM` segment size you should verify that the GPU does in fact have enough memory to complete.
 
@@ -177,13 +181,13 @@ stack backtrace:
 
 Indicating that the GPU is out of memory. In this case, the `SEGMENT_SIZE` should be reduced.
 
-:::tip[Note]
+<Info>
 If you have a multi-GPU system, your `SEGMENT_SIZE` should be set to the lowest common denominator of the GPUs in the system, so benchmarking should be performed on that card by tuning device-id in `compose.yml`.
-:::
+</Info>
 
-:::tip[Note]
+<Info>
 If a job fails to complete due to OOM, it may be resumed after Bento has been restarted. It's important to ensure that resumed jobs are not in progress during the test harness execution.
-:::
+</Info>
 
 ## How to Benchmark an Individual GPU's `SEGMENT_SIZE`
 

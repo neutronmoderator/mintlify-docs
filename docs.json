@@ -128,7 +128,6 @@
           },
           {
             "group": "Dev Tooling",
-            "icon": "code",
             "pages": [
               "developers/tooling/sdk",
               "developers/tooling/cli"
@@ -157,7 +156,7 @@
         "tab": "Prove",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": " ",
             "pages": [
               "provers/quick-start"
             ]
