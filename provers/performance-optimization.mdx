@@ -191,12 +191,10 @@ If a job fails to complete due to OOM, it may be resumed after Bento has been re
 
 ## How to Benchmark an Individual GPU's `SEGMENT_SIZE`
 
-::::steps
-
-#### Configure a Single GPU Instance
-
-```yml [compose.yml]
-gpu_agent0: &gpu
+<Steps>
+  <Step title="Configure a Single GPU Instance">
+    ```yml compose.yml
+    gpu_agent0: &gpu
     image: agent
     runtime: nvidia
     pull_policy: never
@@ -208,49 +206,43 @@ gpu_agent0: &gpu
 
     mem_limit: 4G
     cpu_count: 4
-```
+    ```
+  </Step>
+  <Step title="Verify that No Other GPU Definitions Are Present in the Compose File">
+  </Step>
+  <Step title="Confirm the `SEGMENT_SIZE` Is Set to the Maximum as Determined Above in the `.env.broker` File">
+  </Step>
+  <Step title="Execute the Test Harness">
+    ```bash Terminal
+    RUST_LOG=info bento_cli -c 4096
+    ```
+  </Step>
+  <Step title="Confirm Single GPU Utilization Using `nvtop`">
+    ![Nvtop diagram](/images/nvtop.png)
+  </Step>
+  <Step title="Review the Effective Hz">
+    ```bash Terminal
+    bash scripts/job_status.sh <JOB_ID>
+    ```
 
-#### Verify that No Other GPU Definitions Are Present in the Compose File
+    ```txt Example Results
+    ....
 
-#### Confirm the `SEGMENT_SIZE` Is Set to the Maximum as Determined Above in the `.env.broker` File
-
-#### Execute the Test Harness
-
-```bash Terminal
-RUST_LOG=info bento_cli -c 4096
-```
-
-#### Confirm Single GPU Utilization Using `nvtop`
-
-> Monitoring Bento with [nvtop](https://github.com/Syllo/nvtop)
-![Nvtop diagram](/nvtop.png)
-
-
-#### Review the Effective Hz
-
-```bash Terminal
-bash scripts/job_status.sh <JOB_ID>
-```
-
-```txt [Example Results]
-....
-
-Effective Hz:
-         hz          | total_cycles | elapsed_sec
----------------------+--------------+-------------
- 264892.074666431500 | 34603008     |  130.630590
-(1 row)
-```
-
-Here we see that our single `gpu-agent` at max `SEGMENT_SIZE` is able to achieve an effective 264kHz.
-
-::::
+    Effective Hz:
+            hz          | total_cycles | elapsed_sec
+    ---------------------+--------------+-------------
+    264892.074666431500 | 34603008     |  130.630590
+    (1 row)
+    ```
+    Here we see that our single `gpu-agent` at max `SEGMENT_SIZE` is able to achieve an effective 264kHz.
+  </Step>
+</Steps>
 
 ## Multiple Agents and GPUs
 
 We can incorporate multiple GPUs into a configuration. In this example, we have two 16GB GPU as that proved to be optimal above:
 
-```yml [compose.yml]
+```yml compose.yml
 ....
   gpu_prove_agent0:
     <<: *agent-common

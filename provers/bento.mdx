@@ -1,4 +1,8 @@
-# Bento Technical Design
+---
+title: Bento Technical Design
+description: An overview of how Bento is designed.
+icon: box-open
+---
 
 ## Overview
 
@@ -28,9 +32,7 @@ Bento's design philosophy is centered around [TaskDB](#taskdb). TaskDB is a data
 
 The following diagram is a visual representation of the proving workflow:
 
-<a href="/bento_technical_diagram.png">
-  <img src="/bento_technical_diagram.png" alt="Boundless Protocol" />
-</a>
+![A diagram showing Bento's constituent services](/images/bento_technical_diagram.png)
 
 Bento has the application containers:
 
@@ -46,29 +48,29 @@ As demonstrated above, Bento breaks down tasks into these major actions:
 - **Finalize** - Uploads the final proof to minio.
 - **SNARK** - Convert a STARK proof into a SNARK proof using [rapidsnark](https://github.com/iden3/rapidsnark).
 
-:::tip[Note]
+<Tip>
 For a more in depth information see [the recursive proving docs](https://dev.risczero.com/api/recursion).
-:::
+</Tip>
 
 ### Redis
 
-:::tip
+<Note>
 For optimal performance, the machine running TaskDB should be co-located with the GPUs i.e. in the same datacenter.
-:::
+</Note>
 
 In order to share intermediate files (such as segments) between workers, Redis is used as a fast intermediary. Bento writes to Redis for fast cross machine file access and provides a high bandwidth backbone for sharing data between nodes and workers.
 
-:::warning[Warning]
+<Warning>
 The Redis node's memory configuration is important for the size of proofs running. Because each segment is \~5 - 10 MB in size it is possible to overload Redis's node memory with too much data if the STARK proof is large enough and the GPU workers are not consuming the segments fast enough.
 
 We recommend a high memory node for the Redis container as well as active monitoring / alerts (see [monitoring](/provers/monitoring) for more details) on the Redis node to ensure it does not overflow the possible memory.
-:::
+</Warning>
 
 ### TaskDB
 
-:::tip
+<Tip>
 For optimal performance, the machine running TaskDB should be co-located with the GPUs i.e. in the same datacenter.
-:::
+</Tip>
 
 TaskDB is the center of how Bento schedules and prioritizes work. It provides the ability to create a job which will contain many tasks, each with different actions in a stream of work. This stream is ordered by priority and dependencies. TaskDB's core job is to correctly emit work to agents via long polling in the right order and priority. As segments stream out of the executor, TaskDB delegates the work plan such that GPU nodes can start proving before the executor completes.
 
