@@ -49,12 +49,13 @@
         "label": "Support Forum",
         "href": "https://github.com/boundless-xyz/boundless/discussions",
         "icon": "circle-question"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/boundless-xyz/boundless",
+        "icon": "github"
       }
-    ],
-    "primary": {
-      "type": "github",
-      "href": "https://github.com/boundless-xyz/boundless"
-    }
+    ]
   },
   "contextual": {
     "options": [
