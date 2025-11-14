@@ -81,6 +81,17 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Home",
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "/"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Build",
         "groups": [
           {
