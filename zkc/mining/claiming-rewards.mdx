@@ -1,12 +1,16 @@
-# Claiming Rewards
+---
+title: Claiming Rewards
+description: How to claim ZK Mining rewards.
+icon: hand-holding-circle-dollar
+---
 
 ## Mining Rewards
 
-:::tip
+<Tip>
 Claiming mining rewards requires *both* a valid archive node RPC endpoint and a Beacon Chain RPC endpoint.
 
 In our testing, the Alchemy paid RPC plan in combination with the public beacon chain API URL (`https://ethereum-beacon-api.publicnode.com/`) works for claiming rewards. Quicknode works for the beacon chain endpoint, but Quicknode RPC endpoints are not recommended for `claim-mining-rewards` as it commonly errors with request rate limits.
-:::
+</Tip>
 
 After the reward epoch has finalized, mining rewards can be claimed with:
 
