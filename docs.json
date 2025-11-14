@@ -3,7 +3,9 @@
   "theme": "mint",
   "name": "Boundless",
   "colors": {
-    "primary": "#16A34A"
+    "primary": "#16A34A",
+    "light": "#AED8C4",
+    "dark": "#16A34A"
   },
   "appearance": {
     "default": "system",
