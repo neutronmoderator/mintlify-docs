@@ -87,7 +87,7 @@ Once the request is submitted to the market, the auction will follow the auction
 ![Offer Parameter Diagram](/images/request_diagram.png)
 
 - Once the request is processed, and the order is created, the order is surfaced to the market and the auction begins.
-- For 85 seconds (specified by `rampUpStart`), the order will be at the minimum price (`minPrice`). This time allows for provers to see the request, and run checks on the request (known as a preflight)[^1]. During this 85 second period, provers can lock the order at the minimum price (remember that, at any time, any prover locking the order successfully will close the auction).
+- For 85 seconds (specified by `rampUpStart`), the order will be at the minimum price (`minPrice`). This time allows for provers to see the request, and <Tooltip tip="As of October 2025, some provers skip preflight to be more competitive. This is not recommended as it can lead an increased risk of slashing for provers.">run checks on the request</Tooltip> (known as a preflight).During this 85 second period, provers can lock the order at the minimum price (remember that, at any time, any prover locking the order successfully will close the auction).
 - At 85 seconds, the "ramp up period" begins. During this timeframe, the auction price grows linearly from the minimum price to the maximum price of 0.00025 ETH, over the span of 85 blocks (~170 seconds on Base mainnet).
 - After the "ramp up period", the price remains at the maximum price until the primary prover deadline (the "lock timeout" of 10 minutes 25 seconds since the ramp up start). 
 - If the prover who locked the order (the primary prover) does not fulfill by this deadline, they will be slashed. This means that they will lose their proving collateral for this order; 50% of it will be burned and 50% of it will go to a secondary prover. 
@@ -127,12 +127,12 @@ The price of a request determines how competitively provers bid on the request, 
 
 | Parameter     | Units | Recommendation | Notes |
 |---------------|-------|----------------|-------|
-| Minimum Price | wei   | For testing purposes, set the minimum price to 0[^2]. To guarantee the lowest latency in both locking and fulfillment, it is recommended to set the minimum price as non-zero.    | As market demand and supply normalizes, competition will stabilize prices at non-zero.|
-| Maximum Price | wei   | It is recommended to test the `maxPrice` parameter by starting low, and bumping the value up only when requests are not locked whatsoever. | Setting a substantial price ensures requests are visible and attractive to provers. For testing purposes, the recommended lowest amount for the maximum price is $0.1 of ETH per GCycle (1 billion cycles).[^2] |
+| Minimum Price | wei   | For testing purposes, set the minimum price to 0 (as of October 2025)). To guarantee the lowest latency in both locking and fulfillment, it is recommended to set the minimum price as non-zero.    | As market demand and supply normalizes, competition will stabilize prices at non-zero.|
+| Maximum Price | wei   | It is recommended to test the `maxPrice` parameter by starting low, and bumping the value up only when requests are not locked whatsoever. | Setting a substantial price ensures requests are visible and attractive to provers. For testing purposes, the recommended lowest amount (as of October 2025) for the maximum price is $0.1 of ETH per GCycle (1 billion cycles). |
 | Lock Collateral | wei (*$ZKC*)   | 10 x `maxPrice` | Please note that, as of October 2025, setting the lock collateral to 10 x `maxPrice` may result in some larger requests (50GCycles+) not being locked due to the large amount of *$ZKC* required as lock collateral. For testing purposes, the recommended lowest amount for the lock collateral is 5 x `maxPrice`; the aim should always be to increase the `lockCollateral` to 10 x `maxPrice` once request fulfillment is stable. |
 
-[^1]: As of October 2025, some provers skip preflight to be more competitive. This is not recommended as it can lead an increased risk of slashing for provers.
-[^2]: This is accurate for October 2025.
+
+
 
 
 

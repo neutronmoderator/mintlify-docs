@@ -39,7 +39,7 @@ The following diagram illustrates the recommended mining reward workflow:
 
 ## Recommendations
 
-To [enable ZK mining](/zkc/mining/enable), the prover specifies the `REWARD_ADDRESS` environment variable which must be a valid Ethereum address. This address *does not* have to be the same as the *\$ZKC* staking wallet address or a Boundless prover address[^1], though a single address can be used for all three purposes. It is NOT recommended to use a single address for all three purposes; if the private key is compromised or lost, this will lead to a loss of staked *\$ZKC*, loss of *\$ZKC* rewards, and the loss of boundless prover *\$ZKC* [collateral](/zkc/collateral) balance.
+To [enable ZK mining](/zkc/mining/enable), the prover specifies the `REWARD_ADDRESS` environment variable which must be a valid Ethereum address. This address *does not* have to be the same as the *\$ZKC* staking wallet address or a <Tooltip tip="Note that mining rewards are eligible for all verifiable work, not solely work done to prove Boundless market orders. Therefore, provers not connected to the Boundless market are still eligible for $ZKC rewards, provided they are proving during the epoch and they have staked $ZKC.">Boundless prover address</Tooltip>, though a single address can be used for all three purposes. It is NOT recommended to use a single address for all three purposes; if the private key is compromised or lost, this will lead to a loss of staked *\$ZKC*, loss of *\$ZKC* rewards, and the loss of boundless prover *\$ZKC* [collateral](/zkc/collateral) balance.
 
 ### Separate Staking Wallet and Reward Wallet
 
@@ -102,4 +102,3 @@ boundless rewards submit-mining --recipient <RECIPIENT>
 
 This is a separate Ethereum address which will receive only the mining *\$ZKC* rewards for that *specific* submit call. If the submit does NOT specify a recipient, then the command will default to the stored rewards address from the rewards module config (run `boundless rewards config` to see the stored value).
 
-[^1]: Note that mining rewards are eligible for *all verifiable work*, not solely work done to prove Boundless market orders. Therefore, provers not connected to the Boundless market are still eligible for *\$ZKC* rewards, provided they are proving during the epoch and they have staked *\$ZKC*.
