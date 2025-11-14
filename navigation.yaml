@@ -70,7 +70,7 @@ tabs:
 
   - tab: "$ZKC"
     groups:
-      - group: "Getting Started"
+      - group: " "
         pages:
           - "zkc/quick-start"
           - "zkc/collateral"
