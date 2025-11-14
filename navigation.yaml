@@ -1,7 +1,7 @@
 tabs:
   - tab: "Build"
     groups:
-      - group: "Introduction"
+      - group: " "
         pages:
           - "developers/what"
           - "developers/why"

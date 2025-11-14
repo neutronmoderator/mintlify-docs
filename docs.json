@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
+  "theme": "mint",
   "name": "Boundless",
   "colors": {
     "primary": "#16A34A"
@@ -82,7 +82,7 @@
         "tab": "Build",
         "groups": [
           {
-            "group": "Introduction",
+            "group": " ",
             "pages": [
               "developers/what",
               "developers/why",
