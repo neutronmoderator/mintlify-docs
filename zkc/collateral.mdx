@@ -1,28 +1,33 @@
-# $ZKC as Proving Collateral
+---
+title: $ZKC as Proving Collateral
+description: Using $ZKC as proving collateral on the Boundless market. 
+icon: lock
+---
 
-:::note
-- *$ZKC* is deployed on Ethereum Mainnet and Base Mainnet. 
-- To use *$ZKC* in the Boundless market as [Proving Collateral](/provers/quick-start#deposit-collateral) on Base mainnet, *$ZKC* must be [bridged](/zkc/collateral#bridging-zkc) from Ethereum mainnet to Base mainnet.
-:::
+<Note>
+- *\$ZKC* is deployed on Ethereum Mainnet and Base Mainnet. 
+- To use *\$ZKC* in the Boundless market as [Proving Collateral](/provers/quick-start#deposit-collateral) on Base mainnet, *\$ZKC* must be [bridged](/zkc/collateral#bridging-zkc) from Ethereum mainnet to Base mainnet.
+</Note>
 
-Before accepting a proof request, provers must lock *$ZKC* as collateral in the market, typically *at least* ~10x the request’s maximum fee. If the proof is not fulfilled on time, the prover is slashed; 50% of the collateral is burned permanently, and the remaining 50% is reassigned onchain as a bounty for another prover to complete the work. This system provides a stronger economic guarantee of proof delivery. At the same time, as the request volume grows, the total amount of *$ZKC* locked increases by a multiple of ~10x, reducing the total circulating supply.  
+Before accepting a proof request, provers must lock *\$ZKC* as collateral in the market, typically *at least* ~10x the request’s maximum fee. If the proof is not fulfilled on time, the prover is slashed; 50% of the collateral is burned permanently, and the remaining 50% is reassigned onchain as a bounty for another prover to complete the work. This system provides a stronger economic guarantee of proof delivery. At the same time, as the request volume grows, the total amount of *\$ZKC* locked increases by a multiple of ~10x, reducing the total circulating supply.  
 
-![Multi Chain Proving](/multi_chain_proving.png)
+![Multi Chain Proving](/images/multi_chain_proving.png)
 
 ## Bridging $ZKC
 
-:::note[Official $ZKC Deployments]
+<Check>
+*\$ZKC* is deployed at: 
 - Ethereum Mainnet: `0x000006c2A22ff4A44ff1f5d0F2ed65F781F55555`
 - (Bridged) Base: `0xAA61bB7777bD01B684347961918f1E07fBbCe7CF`
-:::
+</Check>
 
 ### Bridging using Base's Native Bridges
 
-To bridge *$ZKC* from Ethereum mainnet to Base mainnet, see the [Base documentation for bridging assets to Base](https://docs.base.org/base-chain/network-information/bridges-mainnet).
+To bridge *\$ZKC* from Ethereum mainnet to Base mainnet, see the [Base documentation for bridging assets to Base](https://docs.base.org/base-chain/network-information/bridges-mainnet).
 
 ### Manual Bridging using `cast`
 
-To start, make sure to have `cast` installed. This will require [installing Foundry](https://getfoundry.sh/introduction/installation/). Next, export the `PRIVATE_KEY` for the address holding the *$ZKC* tokens:
+To start, make sure to have `cast` installed. This will require [installing Foundry](https://getfoundry.sh/introduction/installation/). Next, export the `PRIVATE_KEY` for the address holding the *\$ZKC* tokens:
 
 ```bash
 export PRIVATE_KEY=0x1234...5678
